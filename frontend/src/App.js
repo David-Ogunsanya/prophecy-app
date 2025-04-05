@@ -13,36 +13,35 @@ function App() {
             <div className="flex flex-col min-h-screen">
                 {/* Header/Nav Bar */}
                 <header
-    style={{
-        backgroundImage: 'linear-gradient(to top, #d2c7ad, #d1c7b0, #d0c8b2, #d0c8b5, #cfc8b7)',
-    }}
-    className="text-black font-sans font-semibold text-lg p-4 tracking-wide"
+  style={{
+    backgroundColor: '#f9efe4'
+  }}
+  className="text-black font-sans text-lg p-4 tracking-wide"
 >
-    <nav className="flex justify-between">
-        <div className="text-lg font-bold content-start">
-            <Link to="/">Sealed Scriptures</Link>
-        </div>
-        <ul className="navbar-list space-x-4 flex tracking-wide">
-            <li>
-                <Link to="/" className="">Home</Link>
-            </li>
-            <li>
-                <Link to="/login" className="">Login</Link>
-            </li>
-            <li>
-                <Link to="/register" className="">Register</Link>
-            </li>
-            <li>
-                <Link to="/verses" className="">Verses</Link>
-            </li>
-            <li>
-                <Link to="/add-verse" className="">Add Verse</Link>
-            </li>
-        </ul>
+  <div className="navbar-container flex justify-between items-center">
+    {/* Left: Brand */}
+    <div className="navbar-logo font-bold text-xl">
+      <Link to="/">Sealed Scriptures</Link>
+    </div>
+
+    {/* Center: Navigation Links */}
+    <nav className="navbar-links">
+      <ul className="flex gap-6 items-center">
+        <li><Link to="/">Home</Link></li>
+        <li><Link to="/login">Login</Link></li>
+        <li><Link to="/register">Register</Link></li>
+        <li><Link to="/verses">Verses</Link></li>
+        <li><Link to="/add-verse">Add Verse</Link></li>
+      </ul>
     </nav>
+
+    {/* Right: Actions (optional buttons) */}
+    <div className="navbar-actions flex gap-3">
+      <button className="border border-black px-4 py-1 rounded-full hover:bg-black hover:text-white transition">Book a demo</button>
+      <button className="bg-black text-white px-4 py-1 rounded-full hover:bg-gray-800 transition">Start for free</button>
+    </div>
+  </div>
 </header>
-
-
                 {/* Main Content */}
                 <main className="flex-1">
                     <Routes>

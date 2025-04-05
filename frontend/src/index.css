@@ -2,18 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
-.navbar-list li {
-  @apply inline-block;
+/* Hide scrollbars except horizontal */
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
 }
-
-.navbar-list a {
-  @layer font-family-['Roboto', sans-serif] tracking-[0.15em] leading-[0.25rem] text-[1.1rem] no-underline text-[#2E1E06] pb-[0.5rem] relative transition-all duration-500 ease-in-out inline-block;
-}
-
-.navbar-list a::after {
-  @layer content-[""] absolute bottom-0 left-0 w-0 h-[2px] bg-black rounded-[5px] transition-[width] duration-400 ease-in-out;
-}
-
-.navbar-list a:hover::after {
-  @apply w-full;
+.hide-scrollbar {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
 }
