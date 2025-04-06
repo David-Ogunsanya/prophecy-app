@@ -60,7 +60,7 @@ const HomePage = () => {
               src="/images/book_light.jpeg"
               alt="Open Bible with Light"
               className="rounded-lg shadow-lg"
-              style={{ width: '700px', height: 'auto' }}
+              style={{ width: '600px', height: '500px' }}
             />
           </div>
         </div>
@@ -78,12 +78,13 @@ const HomePage = () => {
             style={{ scrollSnapAlign: 'start' }}
           >
             {/* Background Image */}
-            <img
-              src="/images/Daniel_2.png"
-              alt="Daniel 2 Statue"
-              className="w-full h-full object-cover"
-            />
-
+            <div className="w-full h-full overflow-hidden">
+              <img
+                src="/images/Daniel_2.png"
+                alt="Daniel 2 Statue"
+                className="w-full h-full object-cover transform transition-transform duration-500 ease-in-out hover:scale-110"
+              />
+            </div>
             {/* Text Overlay */}
             <div className="absolute top-0 left-0 w-full h-full flex flex-col justify-end p-6 text-white bg-gradient-to-t from-black/60 via-black/30 to-transparent">
               <h2 className="text-2xl font-bold mb-2">Daniel 2:38–47</h2>
@@ -93,7 +94,7 @@ const HomePage = () => {
             </div>
 
             {/* + Icon */}
-            <div className="absolute bottom-4 right-4 w-10 h-10 bg-white text-black text-xl rounded-full flex items-center justify-center shadow-md hover:scale-105 transition-transform cursor-pointer">
+            <div className="absolute bottom-4 right-4 w-10 h-10 bg-white text-black text-xl rounded-full flex items-center justify-center shadow-md hover:scale-200 transition-transform cursor-pointer">
               +
             </div>
           </div>
