@@ -14,7 +14,6 @@ const HomePage = () => {
     return () => (document.body.style.overflow = 'auto');
   }, [activeModal]);
 
-  // Intersection Observer to trigger fade-in animation for the scroll container
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
@@ -51,6 +50,11 @@ const HomePage = () => {
       image: '',
       text: 'Four great beasts rise out of the sea.',
     },
+    {
+      title: 'Alexander The Great',
+      image: '/images/Alexander_Great.png',
+      text: 'Alexander the great in the bible and the prophecy concerning him.',
+    }
   ];
 
   const openModal = (index) => setActiveModal(index);
@@ -70,7 +74,6 @@ const HomePage = () => {
       {/* About Section */}
       <div className="bg-[#f9efe4] flex justify-center p-10">
         <div className="max-w-7xl flex flex-wrap md:flex-nowrap gap-10">
-          {/* Left: About Text */}
           <div className="md:w-2/3 space-y-10 ml-6">
             <h1 className="text-4xl font-bold font-mono uppercase">About Us</h1>
             <p className="text-2xl w-4/5 leading-relaxed font-sans">
@@ -88,7 +91,6 @@ const HomePage = () => {
             </div>
           </div>
 
-          {/* Right: Image */}
           <div className="md:w-1/3 flex justify-start">
             <img
               src="/images/book_light.jpeg"
@@ -99,27 +101,21 @@ const HomePage = () => {
         </div>
       </div>
 
-      {/* Outer Section with constant background */}
-      <section
-        className="bg-[#f9efe4] py-32 relative overflow-visible"
-        style={{
-          '--gallery-side-padding': 'calc(50vw - min(1680px, 100vw)/2)',
-        }}
-      >
-        {/* Animated scroll container */}
+      {/* Prophecy Scroll Section */}
+      <section className="bg-[#f9efe4] py-32 relative overflow-visible">
         <div
           ref={scrollSectionRef}
           className={`animate-on-scroll ${isScrollVisible ? 'fade-in' : ''}`}
         >
           <div
-            className="scroll-container flex min-h-[700px] overflow-x-auto overflow-y-visible scroll-smooth hide-scrollbar gap-16 px-[var(--gallery-side-padding)]"
-            style={{ scrollSnapType: 'x mandatory' }}
+            className="w-screen flex min-h-[700px] overflow-x-auto overflow-y-visible scroll-smooth hide-scrollbar gap-16 pl-12 pr-10"
           >
+
+
             {prophecyCards.map((card, index) => (
               <div
                 key={index}
                 className="zoom-card flex-shrink-0 w-[360px] h-[640px] rounded-[32px] overflow-visible relative transition-transform duration-500 hover:scale-[1.02] py-2"
-                style={{ scrollSnapAlign: 'start' }}
                 onClick={() => openModal(index)}
               >
                 <div className="w-full h-full overflow-hidden rounded-[32px]">
@@ -136,13 +132,11 @@ const HomePage = () => {
                   )}
                 </div>
 
-                {/* Text Overlay */}
                 <div className="absolute bottom-8 left-3 right-4 text-white text-center rounded-xl">
                   <h2 className="text-xl font-bold font-sans mb-1">{card.title}</h2>
                   <p className="text-sm font-sans leading-relaxed">{card.text}</p>
                 </div>
 
-                {/* Plus Icon */}
                 <div className="absolute bottom-4 right-4 w-10 h-10 bg-white text-black text-xl rounded-full flex items-center justify-center transition-transform cursor-pointer hover:scale-110">
                   +
                 </div>
@@ -161,12 +155,8 @@ const HomePage = () => {
               >
                 ×
               </button>
-              <h2 className="text-2xl font-bold mb-4">
-                {prophecyCards[activeModal].title}
-              </h2>
-              <p className="text-base text-gray-700">
-                {prophecyCards[activeModal].text}
-              </p>
+              <h2 className="text-2xl font-bold mb-4">{prophecyCards[activeModal].title}</h2>
+              <p className="text-base text-gray-700">{prophecyCards[activeModal].text}</p>
             </div>
           </div>
         )}
