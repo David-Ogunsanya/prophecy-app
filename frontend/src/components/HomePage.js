@@ -1,7 +1,39 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 
 const HomePage = () => {
   const [activeModal, setActiveModal] = useState(null);
+  const [isScrollVisible, setIsScrollVisible] = useState(false);
+  const scrollSectionRef = useRef(null);
+
+  useEffect(() => {
+    if (activeModal !== null) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'auto';
+    }
+    return () => (document.body.style.overflow = 'auto');
+  }, [activeModal]);
+
+  // Intersection Observer to trigger fade-in animation for the scroll container
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsScrollVisible(true);
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.2 }
+    );
+    if (scrollSectionRef.current) {
+      observer.observe(scrollSectionRef.current);
+    }
+    return () => {
+      if (scrollSectionRef.current) {
+        observer.unobserve(scrollSectionRef.current);
+      }
+    };
+  }, []);
 
   const prophecyCards = [
     {
@@ -67,64 +99,74 @@ const HomePage = () => {
         </div>
       </div>
 
-      {/* Prophecy Cards Scroll Section */}
+      {/* Outer Section with constant background */}
       <section
         className="bg-[#f9efe4] py-32 relative overflow-visible"
         style={{
           '--gallery-side-padding': 'calc(50vw - min(1680px, 100vw)/2)',
         }}
       >
+        {/* Animated scroll container */}
         <div
-          className="scroll-container flex min-h-[700px] overflow-x-auto overflow-y-visible scroll-smooth hide-scrollbar gap-16 px-[var(--gallery-side-padding)]"
-          style={{ scrollSnapType: 'x mandatory' }}
+          ref={scrollSectionRef}
+          className={`animate-on-scroll ${isScrollVisible ? 'fade-in' : ''}`}
         >
-          {prophecyCards.map((card, index) => (
-            <div
-              key={index}
-              className="zoom-card flex-shrink-0 w-[360px] h-[640px] rounded-[32px] overflow-visible relative transition-transform duration-500 hover:scale-[1.02] py-2"
-              style={{ scrollSnapAlign: 'start' }}
-              onClick={() => openModal(index)}
-            >
-              <div className="w-full h-full overflow-hidden rounded-[32px]">
-                {card.image ? (
-                  <img
-                    src={card.image}
-                    alt={card.title}
-                    className="w-full h-full object-cover rounded-[32px]"
-                  />
-                ) : (
-                  <div className="w-full h-full bg-gray-300 flex items-center justify-center text-gray-600 text-center px-4 rounded-[32px]">
-                    <p>No image available</p>
-                  </div>
-                )}
-              </div>
+          <div
+            className="scroll-container flex min-h-[700px] overflow-x-auto overflow-y-visible scroll-smooth hide-scrollbar gap-16 px-[var(--gallery-side-padding)]"
+            style={{ scrollSnapType: 'x mandatory' }}
+          >
+            {prophecyCards.map((card, index) => (
+              <div
+                key={index}
+                className="zoom-card flex-shrink-0 w-[360px] h-[640px] rounded-[32px] overflow-visible relative transition-transform duration-500 hover:scale-[1.02] py-2"
+                style={{ scrollSnapAlign: 'start' }}
+                onClick={() => openModal(index)}
+              >
+                <div className="w-full h-full overflow-hidden rounded-[32px]">
+                  {card.image ? (
+                    <img
+                      src={card.image}
+                      alt={card.title}
+                      className="w-full h-full object-cover rounded-[32px]"
+                    />
+                  ) : (
+                    <div className="w-full h-full bg-gray-300 flex items-center justify-center text-gray-600 text-center px-4 rounded-[32px]">
+                      <p>No image available</p>
+                    </div>
+                  )}
+                </div>
 
-              {/* Text Overlay */}
-              <div className="absolute bottom-8 left-3 right-4 text-white text-center rounded-xl">
-                <h2 className="text-xl font-bold font-sans mb-1">{card.title}</h2>
-                <p className="text-sm font-sans leading-relaxed">{card.text}</p>
-              </div>
+                {/* Text Overlay */}
+                <div className="absolute bottom-8 left-3 right-4 text-white text-center rounded-xl">
+                  <h2 className="text-xl font-bold font-sans mb-1">{card.title}</h2>
+                  <p className="text-sm font-sans leading-relaxed">{card.text}</p>
+                </div>
 
-              {/* + Icon */}
-              <div className="absolute bottom-4 right-4 w-10 h-10 bg-white text-black text-xl rounded-full flex items-center justify-center transition-transform cursor-pointer hover:scale-110">
-                +
+                {/* Plus Icon */}
+                <div className="absolute bottom-4 right-4 w-10 h-10 bg-white text-black text-xl rounded-full flex items-center justify-center transition-transform cursor-pointer hover:scale-110">
+                  +
+                </div>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
 
         {/* Modal */}
         {activeModal !== null && (
-          <div className="fixed inset-0 bg-black bg-opacity-70 backdrop-blur-sm flex items-center justify-center z-50 transition-opacity duration-500 ease-in-out">
-            <div className="bg-white p-10 max-w-2xl w-full rounded-xl relative transition-transform transition delay-100  duration-1000 ease-in-out">
+          <div className="fixed inset-0 bg-black bg-opacity-70 backdrop-blur-md flex items-center justify-center z-50 transition-opacity duration-500 ease-in-out">
+            <div className="bg-white p-10 max-w-2xl w-full rounded-xl relative transform transition-all duration-500 ease-out modal-animate">
               <button
                 onClick={closeModal}
                 className="absolute top-4 right-4 text-xl font-bold text-gray-600 hover:text-black"
               >
                 ×
               </button>
-              <h2 className="text-2xl font-bold mb-4">{prophecyCards[activeModal].title}</h2>
-              <p className="text-base text-gray-700">{prophecyCards[activeModal].text}</p>
+              <h2 className="text-2xl font-bold mb-4">
+                {prophecyCards[activeModal].title}
+              </h2>
+              <p className="text-base text-gray-700">
+                {prophecyCards[activeModal].text}
+              </p>
             </div>
           </div>
         )}
