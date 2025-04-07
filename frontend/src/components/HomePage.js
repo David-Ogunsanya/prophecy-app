@@ -1,45 +1,47 @@
-import React, { useEffect } from 'react';
+import React, { useState } from 'react';
 
 const HomePage = () => {
-  // Scroll animation effect
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('fade-in');
-            observer.unobserve(entry.target);
-          }
-        });
-      },
-      { threshold: 0.1 }
-    );
+  const [activeModal, setActiveModal] = useState(null);
 
-    document.querySelectorAll('.animate-on-scroll').forEach((el) => {
-      observer.observe(el);
-    });
-  }, []);
+  const prophecyCards = [
+    {
+      title: 'Daniel 2:38–47',
+      image: '/images/Daniel_2.png',
+      text: 'A vision of empires, shattered by the stone not cut with hands.',
+    },
+    {
+      title: 'Matthew 24:14',
+      image: '/images/Matthew_24_14.png',
+      text: 'Jesus makes a prophecy about the world.',
+    },
+    {
+      title: 'Daniel 7',
+      image: '',
+      text: 'Four great beasts rise out of the sea.',
+    },
+  ];
+
+  const openModal = (index) => setActiveModal(index);
+  const closeModal = () => setActiveModal(null);
 
   return (
     <div className="relative">
-      {/* 🔹 Background Image */}
-      <img
-        src="/images/home_page_group.png"
-        alt="Background"
-        className="w-full h-auto object-cover"
-        style={{ height: '100vh' }}
-      />
+      {/* Background Image */}
+      <div className="relative">
+        <img
+          src="/images/home_page_group.png"
+          alt="Background"
+          className="w-full h-screen object-cover"
+        />
+      </div>
 
-      {/* 🔹 About Section */}
-      <div className="relative bg-[#f9efe4] flex justify-center p-10">
+      {/* About Section */}
+      <div className="bg-[#f9efe4] flex justify-center p-10">
         <div className="max-w-7xl flex flex-wrap md:flex-nowrap gap-10">
-          
-          {/* 🟠 Left: About Text */}
+          {/* Left: About Text */}
           <div className="md:w-2/3 space-y-10 ml-6">
-            <h1 className="text-4xl font-bold font-[IBM Plex Mono] uppercase">
-              About Us
-            </h1>
-            <p className="text-2xl w-4/5 leading-relaxed font-[IBM Plex Sans Condensed]">
+            <h1 className="text-4xl font-bold font-mono uppercase">About Us</h1>
+            <p className="text-2xl w-4/5 leading-relaxed font-sans">
               Welcome to our website, where our mission is to shed light on the prophecies of the Bible.
               We delve into these timeless messages with thoughtful interpretation, historical context,
               and spiritual insights to help you explore and understand their significance today.
@@ -54,51 +56,78 @@ const HomePage = () => {
             </div>
           </div>
 
-          {/* 🟠 Right: Image */}
+          {/* Right: Image */}
           <div className="md:w-1/3 flex justify-start">
             <img
               src="/images/book_light.jpeg"
               alt="Open Bible with Light"
-              className="rounded-lg shadow-lg"
-              style={{ width: '600px', height: '500px' }}
+              className="rounded-lg w-[600px] h-[500px] object-cover"
             />
           </div>
         </div>
       </div>
 
-      {/* 🔹 Apple-style Scrollable Card Section */}
-      <section className="bg-[#f9efe4] py-20">
+      {/* Prophecy Cards Scroll Section */}
+      <section
+        className="bg-[#f9efe4] py-32 relative overflow-visible"
+        style={{
+          '--gallery-side-padding': 'calc(50vw - min(1680px, 100vw)/2)',
+        }}
+      >
         <div
-          className="flex overflow-x-auto overflow-y-hidden scroll-smooth hide-scrollbar gap-8 max-w-[1680px] px-8 mx-auto"
+          className="scroll-container flex min-h-[700px] overflow-x-auto overflow-y-visible scroll-smooth hide-scrollbar gap-16 px-[var(--gallery-side-padding)]"
           style={{ scrollSnapType: 'x mandatory' }}
         >
-          {/* 🟢 Prophecy Card */}
-          <div
-            className="flex-shrink-0 w-[360px] h-[640px] rounded-[32px] overflow-hidden relative shadow-lg scroll-snap-start animate-on-scroll"
-            style={{ scrollSnapAlign: 'start' }}
-          >
-            {/* Background Image */}
-            <div className="w-full h-full overflow-hidden">
-              <img
-                src="/images/Daniel_2.png"
-                alt="Daniel 2 Statue"
-                className="w-full h-full object-cover transform transition-transform duration-500 ease-in-out hover:scale-110"
-              />
-            </div>
-            {/* Text Overlay */}
-            <div className="absolute top-0 left-0 w-full h-full flex flex-col justify-end p-6 text-white bg-gradient-to-t from-black/60 via-black/30 to-transparent">
-              <h2 className="text-2xl font-bold mb-2">Daniel 2:38–47</h2>
-              <p className="text-sm leading-snug">
-                A vision of empires, shattered by the stone not cut with hands.
-              </p>
-            </div>
+          {prophecyCards.map((card, index) => (
+            <div
+              key={index}
+              className="zoom-card flex-shrink-0 w-[360px] h-[640px] rounded-[32px] overflow-visible relative transition-transform duration-500 hover:scale-[1.02] py-2"
+              style={{ scrollSnapAlign: 'start' }}
+              onClick={() => openModal(index)}
+            >
+              <div className="w-full h-full overflow-hidden rounded-[32px]">
+                {card.image ? (
+                  <img
+                    src={card.image}
+                    alt={card.title}
+                    className="w-full h-full object-cover rounded-[32px]"
+                  />
+                ) : (
+                  <div className="w-full h-full bg-gray-300 flex items-center justify-center text-gray-600 text-center px-4 rounded-[32px]">
+                    <p>No image available</p>
+                  </div>
+                )}
+              </div>
 
-            {/* + Icon */}
-            <div className="absolute bottom-4 right-4 w-10 h-10 bg-white text-black text-xl rounded-full flex items-center justify-center shadow-md hover:scale-200 transition-transform cursor-pointer">
-              +
+              {/* Text Overlay */}
+              <div className="absolute bottom-8 left-3 right-4 text-white text-center rounded-xl">
+                <h2 className="text-xl font-bold font-sans mb-1">{card.title}</h2>
+                <p className="text-sm font-sans leading-relaxed">{card.text}</p>
+              </div>
+
+              {/* + Icon */}
+              <div className="absolute bottom-4 right-4 w-10 h-10 bg-white text-black text-xl rounded-full flex items-center justify-center transition-transform cursor-pointer hover:scale-110">
+                +
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* Modal */}
+        {activeModal !== null && (
+          <div className="fixed inset-0 bg-black bg-opacity-70 backdrop-blur-sm flex items-center justify-center z-50 transition-opacity duration-500 ease-in-out">
+            <div className="bg-white p-10 max-w-2xl w-full rounded-xl relative transition-transform transition delay-100  duration-1000 ease-in-out">
+              <button
+                onClick={closeModal}
+                className="absolute top-4 right-4 text-xl font-bold text-gray-600 hover:text-black"
+              >
+                ×
+              </button>
+              <h2 className="text-2xl font-bold mb-4">{prophecyCards[activeModal].title}</h2>
+              <p className="text-base text-gray-700">{prophecyCards[activeModal].text}</p>
             </div>
           </div>
-        </div>
+        )}
       </section>
     </div>
   );
