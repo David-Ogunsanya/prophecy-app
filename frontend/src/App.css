@@ -1,6 +1,4 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+
 
 
 /* App Container */
@@ -71,10 +69,19 @@
   position: relative;
   padding-bottom: 83px;
   margin-top: 0;
-  --gallery-side-padding: calc(50vw - min(1680px, var(--global-viewport-content-responsive)) / 2);
+
+  /* Subtracting 3rem from the original calculation: */
+  --gallery-side-padding: calc(50vw - min(1680px, var(--global-viewport-content-responsive)) / 2 - 3rem);
+
+  /* 
+     If you want to shift it even more, 
+     you can subtract a bigger value, e.g. - 6rem or - 100px
+  */
+
   scroll-padding-left: var(--gallery-side-padding);
   scroll-padding-right: var(--gallery-side-padding);
 }
+
 
 /* Card Hover (scale + z-index boost) */
 .zoom-card {
@@ -93,10 +100,15 @@
   }
   to {
     opacity: 2;
-    transform: scale(1);
+    transform: scale(1.03);
   }
 }
 
 .modal-animate {
-  animation: modalFocus 0.56s ease-out forwards;
+  animation: modalFocus 0.26s ease-out forwards;
+}
+
+.scroll-container {
+  margin-left: 6rem; /* Shift container left by 2rem */
+  padding-right: 2rem; /* Keep some right padding for the last card */
 }
