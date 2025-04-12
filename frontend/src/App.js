@@ -42,21 +42,21 @@ function App() {
     </div>
   </div>
 </header>
-                {/* Main Content */}
-                <main className="flex-1">
-                    <Routes>
-                        <Route path="/" element={<HomePage />} />
-                        <Route path="/login" element={<LoginForm />} />
-                        <Route path="/register" element={<RegisterForm />} />
-                        <Route path="/verses" element={<VersesList />} />
-                        <Route path="/add-verse" element={<VerseForm />} />
-                    </Routes>
-                </main>
+          {/* Main Content */}
+          <main className="flex-1">
+              <Routes>
+                  <Route path="/" element={<HomePage />} />
+                  <Route path="/login" element={<LoginForm />} />
+                  <Route path="/register" element={<RegisterForm />} />
+                  <Route path="/verses" element={<VersesList />} />
+                  <Route path="/add-verse" element={<VerseForm />} />
+              </Routes>
+          </main>
 
-                {/* Footer */}
-                <footer className="bg-gray-800 text-white text-center p-4">
-                    <p>© 2024 Sealed Scriptures. All rights reserved.</p>
-                </footer>
+          {/* Footer */}
+          <footer className="bg-gray-800 text-white text-center p-4">
+              <p>© 2024 Sealed Scriptures. All rights reserved.</p>
+          </footer>
             </div>
         </Router>
     );

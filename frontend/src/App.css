@@ -1,9 +1,6 @@
-
-
-
 /* App Container */
 .App {
-  text-align: center;
+  text-align: left;
 }
 
 /* Scroll-triggered animation */
@@ -69,26 +66,17 @@
   position: relative;
   padding-bottom: 83px;
   margin-top: 0;
-
-  /* Subtracting 3rem from the original calculation: */
   --gallery-side-padding: calc(50vw - min(1680px, var(--global-viewport-content-responsive)) / 2 - 3rem);
-
-  /* 
-     If you want to shift it even more, 
-     you can subtract a bigger value, e.g. - 6rem or - 100px
-  */
-
   scroll-padding-left: var(--gallery-side-padding);
   scroll-padding-right: var(--gallery-side-padding);
 }
 
-
 /* Card Hover (scale + z-index boost) */
 .zoom-card {
-  transition: transform 0.45s ease-in-out;
+  transition: transform 0.55s ease-in-out;
 }
 .zoom-card:hover {
-  transform: scale(1.02);
+  transform: scale(1.025);
   z-index: 10;
 }
 
@@ -99,16 +87,61 @@
     transform: scale(0.95);
   }
   to {
-    opacity: 2;
+    opacity: 1;
     transform: scale(1.03);
   }
 }
-
 .modal-animate {
   animation: modalFocus 0.26s ease-out forwards;
 }
 
 .scroll-container {
-  margin-left: 6rem; /* Shift container left by 2rem */
-  padding-right: 2rem; /* Keep some right padding for the last card */
+  margin-left: 6rem;
+  padding-right: 2rem;
+}
+
+/* Scroll animation removed in favor of visible one-at-a-time */
+.animate-scroll-text {
+  animation: none;
+}
+
+/* Hero Section Specific Centering */
+.hero-section {
+  text-align: center;
+}
+
+/* Underline container fix for centering and isolation */
+.hero-section .underline-wrapper {
+  position: relative;
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: bottom;
+  width: 12rem;
+  height: 4rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 4px solid #2563eb;
+}
+
+.hero-section .scrolling-text {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  will-change: transform;
+  transition: transform 0.7s ease-in-out;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.hero-section .scrolling-text div {
+  height: 4rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  font-weight: 600;
+  color: #2563eb;
+  font-family: serif;
+  width: 100%;
 }
