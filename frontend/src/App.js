@@ -16,7 +16,7 @@ function App() {
   style={{
     backgroundColor: '#f9efe4'
   }}
-  className="text-black font-sans text-lg p-4 tracking-wide"
+  className="sticky top-0 z-50 text-black font-sans text-lg p-4 tracking-wide shadow-sm"
 >
   <div className="navbar-container flex justify-between items-center">
     {/* Left: Brand */}

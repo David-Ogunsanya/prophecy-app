@@ -72,11 +72,11 @@ const HomePage = () => {
   return (
     <div className="relative bg-[#f9efe4] min-h-screen">
       {/* Hero Section */}
-      <section className="pt-32 pb-20 px-6 bg-[#f9efe4]">
-        <div className="max-w-6xl mx-auto text-center">
-        <h1 className="text-3xl md:text-6xl font-bold text-stone-800 from-neutral-500 tracking-wide leading-[2]">
-        The prophetic guide even{' '}
-  <span className="changer-overflow relative inline-block w-[14rem] h-[4.5rem] align-middle overflow-hidden border-b-4 border-blue-600">
+      <section className="pt-24 pb-20 px-6 bg-[#f9efe4]">
+        <div className="max-w-7xl mx-auto text-center">
+        <h1 className="md:text-6xl font-medium antialiased font-sans text-stone-800 tracking-wide leading-[3]">
+          The prophetic guide even{' '}
+    <span className="changer-overflow relative inline-block w-[14rem] h-[4.5rem] align-middle overflow-hidden border-b-4 border-blue-600">
     <div
       className="changer-move will-change-transform transition-transform duration-700 ease-in-out"
       style={{ transform: `translateY(-${nameIndex * 4.5}rem)` }}
