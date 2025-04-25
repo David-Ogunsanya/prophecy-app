@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import '../App.css'; // Ensure you have CSS styles
 
 const rotatingNames = ['Elijah', 'Esther', 'John', 'Ruth', 'Daniel'];
-const rotatingPlaces = ['Jerusalem', 'Babylon', 'Galilee', 'Patmos', 'Nineveh'];
+const rotatingPlaces = ['Kings', 'Jerusalem', 'Galilee', 'Patmos', 'Babylon'];
 
 const prophecyCards = [
   {
@@ -73,10 +73,10 @@ const HomePage = () => {
     <div className="relative bg-[#f9efe4] min-h-screen">
       {/* Hero Section */}
       <section className="pt-24 pb-20 px-6 bg-[#f9efe4]">
-        <div className="max-w-7xl mx-auto text-center">
-        <h1 className="md:text-6xl font-medium antialiased font-sans text-stone-800 tracking-wide leading-[3]">
-          The prophetic guide even{' '}
-    <span className="changer-overflow relative inline-block w-[14rem] h-[4.5rem] align-middle overflow-hidden border-b-4 border-blue-600">
+        <div className="max-w-5xl mx-auto text-center">
+        <h1 className="text-3xl md:text-6xl flex-none font-garnett text-stone-800 font-medium normal-case tracking-wide leading-[1.5]">
+          The Prophetic guide even{'  '}
+    <span className="changer-overflow relative inline-block w-[13rem] h-[4.5rem] align-middle overflow-hidden border-b-4 border-blue-600">
     <div
       className="changer-move will-change-transform transition-transform duration-700 ease-in-out"
       style={{ transform: `translateY(-${nameIndex * 4.5}rem)` }}
@@ -93,7 +93,7 @@ const HomePage = () => {
   </span>
   <br />
   in{' '}
-  <span className="changer-overflow relative inline-block w-[23rem] h-[4.5rem] align-middle overflow-hidden border-b-4 border-blue-600">
+  <span className="changer-overflow relative inline-block w-[19rem] h-[4.5rem] align-middle overflow-hidden border-b-4 border-blue-600">
     <div
       className="changer-move will-change-transform transition-transform duration-700 ease-in-out"
       style={{ transform: `translateY(-${placeIndex * 4.6}rem)` }}
@@ -114,7 +114,7 @@ const HomePage = () => {
             To unlock the symbols of prophecy
           </p>
           <div className="flex gap-4 mt-8 flex-wrap justify-center">
-            <button className="bg-black text-white py-3 px-6 rounded-full font-semibold hover:bg-gray-900 transition">
+            <button className="bg-gray-800 text-white py-3 px-6 tracking-wide rounded-full font-semibold hover:bg-gray-900 transition">
               Start studying
             </button>
             <button className="border border-gray-500 text-gray-900 py-3 px-6 rounded-full font-semibold hover:bg-gray-200 transition">
@@ -127,7 +127,7 @@ const HomePage = () => {
       <div className="bg-[#f9efe4] flex justify-center p-10">
         <div className="max-w-7xl flex flex-wrap md:flex-nowrap gap-10 text-left">
           <div className="md:w-2/3 space-y-10 ml-6">
-            <h2 className="text-4xl font-bold font-mono uppercase">About Us</h2>
+            <h2 className="text-4xl font-[Open_Sans]  uppercase">About Us</h2>
             <p className="text-2xl w-4/5 leading-relaxed font-serif">
               Welcome to our website, where our mission is to shed light on the prophecies of the Bible. We delve into these timeless messages with thoughtful interpretation, historical context, and spiritual insights to help you explore and understand their significance today.
             </p>
@@ -140,9 +140,9 @@ const HomePage = () => {
           </div>
           <div className="md:w-1/3 flex justify-start">
             <img
-              src="/images/book_light.jpeg"
+              src="/images/sealed_sc.png"
               alt="Open Bible with Light"
-              className="rounded-lg w-[600px] h-[500px] object-cover"
+              className="rounded-lg w-[900px] h-[500px] object-fill"
             />
           </div>
         </div>
@@ -194,6 +194,39 @@ const HomePage = () => {
           </div>
         )}
       </section>
+    <section className="bg-[#f9efe4] py-2 px-6">
+      <div ref={scrollSectionRef} className={`animate-on-scroll ${isScrollVisible ? 'fade-in' : ''} max-w-7xl mx-auto `}>
+        {/* Text Content */}
+        <div className="text-left md:text-center mb-10">
+          <h2 className="text-4xl md:text-5xl font-[Open_Sans] tracking-wide  text-stone-900 mb-4">Discover Prophecies in different parts of the World.</h2>
+          <p className="text-lg md:text-xl text-gray-800 max-w-3xl mx-auto">
+            Explore how prophecy shaped ancient empires, kings, and key moments in Biblical history across the Middle East.
+          </p>
+          <div className="flex flex-wrap justify-center gap-4 mt-6">
+            <button className="px-6 py-2 border border-black rounded-full hover:bg-black hover:text-white transition">
+              Discover Key Locations
+            </button>
+            <button className="px-6 py-2 bg-black text-white rounded-full hover:bg-gray-800 transition">
+              View All Verses
+            </button>
+          </div>
+        </div>
+
+        {/* Map Display */}
+        
+        <div className="relative flex justify-center">
+          <img
+            src="/images/middle_east.png" // Make sure this path is valid
+            alt="Middle East Map"
+            className="w-[1200px] h-[750px] box-border shadow-lg rounded-lg"
+          />
+          {/* + Icons Overlayed */}
+          <button className="absolute top-[30%] left-[50%] text-3xl font-bold text-black hover:scale-110 transition">+</button>
+          <button className="absolute top-[45%] left-[60%] text-3xl font-bold text-black hover:scale-110 transition">+</button>
+          <button className="absolute top-[65%] left-[35%] text-3xl font-bold text-black hover:scale-110 transition">+</button>
+        </div>
+      </div>
+    </section>
     </div>
   );
 };
