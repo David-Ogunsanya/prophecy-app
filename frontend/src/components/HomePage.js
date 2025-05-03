@@ -1,9 +1,9 @@
 import React, { useState, useEffect, useRef } from 'react';
-import '../App.css'; // Ensure you have CSS styles
+import '../App.css'; // Make sure your animation CSS is here
+
 
 const rotatingNames = ['Elijah', 'Esther', 'John', 'Ruth', 'Daniel'];
 const rotatingPlaces = ['Kings', 'Jerusalem', 'Galilee', 'Patmos', 'Babylon'];
-
 const prophecyCards = [
   {
     title: 'Daniel 2:38–47',
@@ -27,12 +27,33 @@ const prophecyCards = [
   }
 ];
 
+const map_of_places = [
+  {
+    image: '/images/map_middle_east.png',
+  },
+  {
+    image: '/images/map_of_europe.png'
+  },
+  {
+    image: '/images/map_africa.png'
+  }
+];
+
 const HomePage = () => {
   const [nameIndex, setNameIndex] = useState(0);
   const [placeIndex, setPlaceIndex] = useState(0);
   const [activeModal, setActiveModal] = useState(null);
-  const [isScrollVisible, setIsScrollVisible] = useState(false);
+  const [currentMapIndex, setCurrentMapIndex] = useState(0); // <-- added
+  
+
   const scrollSectionRef = useRef(null);
+  const secondSectionRef = useRef(null);
+
+  const [isScrollVisible, setIsScrollVisible] = useState(false);
+  const [isSecondVisible, setIsSecondVisible] = useState(false);
+
+  const [hasClickedNext, setHasClickedNext] = useState(false);
+
 
   useEffect(() => {
     document.body.style.overflow = activeModal !== null ? 'hidden' : 'auto';
@@ -40,22 +61,32 @@ const HomePage = () => {
   }, [activeModal]);
 
   useEffect(() => {
-    const observer = new IntersectionObserver(
+    const observer1 = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
           setIsScrollVisible(true);
-          observer.disconnect();
+          observer1.disconnect();
         }
       },
       { threshold: 0.2 }
     );
-    if (scrollSectionRef.current) {
-      observer.observe(scrollSectionRef.current);
-    }
+
+    const observer2 = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsSecondVisible(true);
+          observer2.disconnect();
+        }
+      },
+      { threshold: 0.2 }
+    );
+
+    if (scrollSectionRef.current) observer1.observe(scrollSectionRef.current);
+    if (secondSectionRef.current) observer2.observe(secondSectionRef.current);
+
     return () => {
-      if (scrollSectionRef.current) {
-        observer.unobserve(scrollSectionRef.current);
-      }
+      if (scrollSectionRef.current) observer1.unobserve(scrollSectionRef.current);
+      if (secondSectionRef.current) observer2.unobserve(secondSectionRef.current);
     };
   }, []);
 
@@ -69,48 +100,64 @@ const HomePage = () => {
 
   const closeModal = () => setActiveModal(null);
 
+  const nextMap = () => {
+    setHasClickedNext(true); // show left arrow
+    setCurrentMapIndex((prevIndex) => (prevIndex + 1) % map_of_places.length);
+  };
+  
+
+  const prevMap = () => {
+    setCurrentMapIndex((prevIndex) => {
+      const newIndex = (prevIndex - 1 + map_of_places.length) % map_of_places.length;
+      if (newIndex === 0) setHasClickedNext(false); // hide arrow again
+      return newIndex;
+    });
+  };
+  
+  
+
   return (
     <div className="relative bg-[#f9efe4] min-h-screen">
       {/* Hero Section */}
       <section className="pt-24 pb-20 px-6 bg-[#f9efe4]">
         <div className="max-w-5xl mx-auto text-center">
-        <h1 className="text-3xl md:text-6xl flex-none font-garnett text-stone-800 font-medium normal-case tracking-wide leading-[1.5]">
-          The Prophetic guide even{'  '}
-    <span className="changer-overflow relative inline-block w-[13rem] h-[4.5rem] align-middle overflow-hidden border-b-4 border-blue-600">
-    <div
-      className="changer-move will-change-transform transition-transform duration-700 ease-in-out"
-      style={{ transform: `translateY(-${nameIndex * 4.5}rem)` }}
-    >
-      {rotatingNames.map((name, index) => (
-        <div
-          key={index}
-          className="changer-text h-[4.5rem]  flex items-center justify-center text-blue-600 font-serif text-2xl md:text-6xl"
-        >
-          {name}
-        </div>
-      ))}
-    </div>
-  </span>
-  <br />
-  in{' '}
-  <span className="changer-overflow relative inline-block w-[19rem] h-[4.5rem] align-middle overflow-hidden border-b-4 border-blue-600">
-    <div
-      className="changer-move will-change-transform transition-transform duration-700 ease-in-out"
-      style={{ transform: `translateY(-${placeIndex * 4.6}rem)` }}
-    >
-      {rotatingPlaces.map((place, index) => (
-        <div
-          key={index}
-          className="changer-text h-[4.5rem] leading-loose flex items-start justify-center text-blue-600 font-serif text-2xl md:text-6xl"
-        >
-          {place}
-        </div>
-      ))}
-    </div>
-  </span>{' '}
-  wants to use
-</h1>
- <p className="italic text-xl md:text-2xl text-gray-700 mt-6 font-serif">
+          <h1 className="text-3xl md:text-6xl flex-none font-sans text-stone-800 font-medium normal-case tracking-wide leading-[1.5]">
+            The Prophetic guide even{' '}
+            <span className="changer-overflow relative inline-block w-[13rem] h-[4.5rem] align-middle overflow-hidden border-b-4 border-blue-600">
+              <div
+                className="changer-move will-change-transform transition-transform duration-700 ease-in-out"
+                style={{ transform: `translateY(-${nameIndex * 4.5}rem)` }}
+              >
+                {rotatingNames.map((name, index) => (
+                  <div
+                    key={index}
+                    className="changer-text h-[4.5rem] flex items-center justify-center text-blue-600 font-serif text-2xl md:text-6xl"
+                  >
+                    {name}
+                  </div>
+                ))}
+              </div>
+            </span>
+            <br />
+            in{' '}
+            <span className="changer-overflow relative inline-block w-[19rem] h-[4.5rem] align-middle overflow-hidden border-b-4 border-blue-600">
+              <div
+                className="changer-move will-change-transform transition-transform duration-700 ease-in-out"
+                style={{ transform: `translateY(-${placeIndex * 4.6}rem)` }}
+              >
+                {rotatingPlaces.map((place, index) => (
+                  <div
+                    key={index}
+                    className="changer-text h-[4.5rem] flex items-start justify-center text-blue-600 font-serif text-2xl md:text-6xl"
+                  >
+                    {place}
+                  </div>
+                ))}
+              </div>
+            </span>{' '}
+            wants to use
+          </h1>
+          <p className="italic text-xl md:text-2xl text-gray-700 mt-6 font-serif">
             To unlock the symbols of prophecy
           </p>
           <div className="flex gap-4 mt-8 flex-wrap justify-center">
@@ -123,11 +170,12 @@ const HomePage = () => {
           </div>
         </div>
       </section>
+
       {/* About Section */}
       <div className="bg-[#f9efe4] flex justify-center p-10">
         <div className="max-w-7xl flex flex-wrap md:flex-nowrap gap-10 text-left">
           <div className="md:w-2/3 space-y-10 ml-6">
-            <h2 className="text-4xl font-[Open_Sans]  uppercase">About Us</h2>
+            <h2 className="text-4xl font-[arial] uppercase">About Us</h2>
             <p className="text-2xl w-4/5 leading-relaxed font-serif">
               Welcome to our website, where our mission is to shed light on the prophecies of the Bible. We delve into these timeless messages with thoughtful interpretation, historical context, and spiritual insights to help you explore and understand their significance today.
             </p>
@@ -194,11 +242,17 @@ const HomePage = () => {
           </div>
         )}
       </section>
-    <section className="bg-[#f9efe4] py-2 px-6">
-      <div ref={scrollSectionRef} className={`animate-on-scroll ${isScrollVisible ? 'fade-in' : ''} max-w-7xl mx-auto `}>
+
+      {/* Second Fade-in Section */}
+      <section
+        ref={secondSectionRef}
+        className={`bg-[#f9efe4] py-2 px-6 animate-on-scroll ${isSecondVisible ? 'fade-in' : ''}`}
+      >
         {/* Text Content */}
         <div className="text-left md:text-center mb-10">
-          <h2 className="text-4xl md:text-5xl font-[Open_Sans] tracking-wide  text-stone-900 mb-4">Discover Prophecies in different parts of the World.</h2>
+          <h2 className="text-4xl md:text-5xl font-[Open_Sans] tracking-wide text-stone-900 mb-4">
+            Discover Prophecies in different parts of the World.
+          </h2>
           <p className="text-lg md:text-xl text-gray-800 max-w-3xl mx-auto">
             Explore how prophecy shaped ancient empires, kings, and key moments in Biblical history across the Middle East.
           </p>
@@ -213,20 +267,38 @@ const HomePage = () => {
         </div>
 
         {/* Map Display */}
-        
-        <div className="relative flex justify-center">
-          <img
-            src="/images/middle_east.png" // Make sure this path is valid
-            alt="Middle East Map"
-            className="w-[1200px] h-[750px] box-border shadow-lg rounded-lg"
-          />
-          {/* + Icons Overlayed */}
-          <button className="absolute top-[30%] left-[50%] text-3xl font-bold text-black hover:scale-110 transition">+</button>
-          <button className="absolute top-[45%] left-[60%] text-3xl font-bold text-black hover:scale-110 transition">+</button>
-          <button className="absolute top-[65%] left-[35%] text-3xl font-bold text-black hover:scale-110 transition">+</button>
-        </div>
-      </div>
-    </section>
+        <div className="relative flex justify-center aspect-3/2">
+          <div className="w-screen flex min-h-[700px] overflow-x-auto scroll-smooth hide-scrollbar gap-16 pl-12 pr-10 justify-center">
+            <img
+              src={map_of_places[currentMapIndex].image}
+              alt="Map Display"
+              className="w-[1100px] h-[740px] box-border shadow-lg rounded-xl"
+            />
+          </div>
+
+          {/* Right Arrow Button */}
+          <button
+            onClick={nextMap}
+            className="group absolute right-20 top-1/2 transform -translate-y-1/2 "
+          >
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#010f25 " className="size-14 transition-transform duration-1000 ease-in-out group-hover:translate-x-8">
+            <path fillRule="evenodd" d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25Zm4.28 10.28a.75.75 0 0 0 0-1.06l-3-3a.75.75 0 1 0-1.06 1.06l1.72 1.72H8.25a.75.75 0 0 0 0 1.5h5.69l-1.72 1.72a.75.75 0 1 0 1.06 1.06l3-3Z" clipRule="evenodd" />
+          </svg>
+          </button>
+          {hasClickedNext && (
+          <button
+            onClick={prevMap}
+            className="group absolute left-20 top-1/2 transform -translate-y-1/2 bg-transparent text-stone-900 rounded-full p-2"
+          >
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#010f25" className="size-14 transition-transform duration-1000 ease-in-out group-hover:-translate-x-8">
+            <path fillRule="evenodd" d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25Zm-4.28 9.22a.75.75 0 0 0 0 1.06l3 3a.75.75 0 1 0 1.06-1.06l-1.72-1.72h5.69a.75.75 0 0 0 0-1.5h-5.69l1.72-1.72a.75.75 0 0 0-1.06-1.06l-3 3Z" clipRule="evenodd" />
+          </svg>
+          </button>
+)}
+</div>
+      </section>
+      <div className="h-20"></div>
+
     </div>
   );
 };
