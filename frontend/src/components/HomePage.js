@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import '../App.css'; // Make sure your animation CSS is here
+import Rotator from './Rotator';
 
 const rotatingNames = ['Elijah', 'Esther', 'John', 'Ruth', 'Daniel'];
 const rotatingPlaces = ['Kings', 'Jerusalem', 'Galilee', 'Patmos', 'Babylon'];
@@ -33,17 +34,46 @@ const map_of_places = [
   { image: '/images/map_africa.png' }
 ];
 
+const accordionData = [
+  {
+    title: "Israel",
+    content: "Israel plays a central role in biblical prophecy, ...",
+    image: "/images/israel_beautiful.jpg"
+  },
+  {
+    title: "Babylon",
+    content: "Babylon plays an important role in biblical prophecy, ...",
+    image: "/images/babylon_beautiful.jpg"
+  },
+  {
+    title: "Saudi Arabia",
+    content: "Saudi Arabia plays an important role in biblical prophecy, beginning with literal Israel as God's chosen nation. Through Christ, the promises extended to spiritual Israel—all who follow Him by faith. Prophecies once for the physical nation now apply to this faithful body, who uphold God's commandments and His end-time purpose.",
+    image: "/images/saudi_arabia_beautiful.jpg"
+  }
+];
+
 const HomePage = () => {
-  const [nameIndex, setNameIndex] = useState(0);
-  const [placeIndex, setPlaceIndex] = useState(0);
   const [activeModal, setActiveModal] = useState(null);
-  const [currentMapIndex, setCurrentMapIndex] = useState(0);
-  const [hasClickedNext, setHasClickedNext] = useState(false);
+  const [rotatorIndex, setRotatorIndex] = useState(0);
 
   const scrollSectionRef = useRef(null);
   const secondSectionRef = useRef(null);
   const [isScrollVisible, setIsScrollVisible] = useState(false);
   const [isSecondVisible, setIsSecondVisible] = useState(false);
+  const [openIndex, setOpenIndex] = useState(0);
+  const [imageTransition, setImageTransition] = useState(false);
+
+  const handleToggle = (index) => {
+    if (openIndex !== index) {
+      setImageTransition(true);
+      setTimeout(() => {
+        setOpenIndex(index);
+        setImageTransition(false);
+      }, 300); // Duration matches your CSS transition
+    }
+  };
+
+  const currentImage = accordionData[openIndex].image;
 
   useEffect(() => {
     document.body.style.overflow = activeModal !== null ? 'hidden' : 'auto';
@@ -74,28 +104,50 @@ const HomePage = () => {
     };
   }, []);
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setNameIndex(prev => (prev + 1) % rotatingNames.length);
-      setPlaceIndex(prev => (prev + 1) % rotatingPlaces.length);
-    }, 3000);
-    return () => clearInterval(interval);
-  }, []);
+  // useEffect(() => {
+  //   const interval = setInterval(() => {
+  //     setRotatorIndex(prev => prev + 1);
+  //   }, 3000);
+  //   return () => clearInterval(interval);
+  // }, []);
 
   const closeModal = () => setActiveModal(null);
 
-  const nextMap = () => {
-    setHasClickedNext(true);
-    setCurrentMapIndex(prevIndex => (prevIndex + 1) % map_of_places.length);
-  };
-
-  const prevMap = () => {
-    setCurrentMapIndex(prevIndex => {
-      const newIndex = (prevIndex - 1 + map_of_places.length) % map_of_places.length;
-      if (newIndex === 0) setHasClickedNext(false);
-      return newIndex;
-    });
-  };
+  const AccordionItem = ({ title, content, isOpen, onToggle }) => {
+    return (
+      <li className="accordion-item border-t border-gray-300">
+        <h3 className="accordion-title">
+          <button
+            onClick={onToggle}
+            className="accordion-button w-full flex justify-between items-center py-4 text-left"
+          >
+            <span className="accordion-title-text text-xl font-semibold">{title}</span>
+            <span
+              className={`accordion-icon transition-transform duration-300 ${isOpen ? 'rotate-180' : ''}`}
+            >
+              <svg width="16" height="16" viewBox="0 0 16 16">
+                <path
+                  d="M2 6l6 6 6-6"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                />
+              </svg>
+            </span>
+          </button>
+        </h3>
+        {isOpen && (
+          <div className="accordion-tray transition-all duration-300">
+            <div className={`accordion-content pt-2 pb-4 accordion-content-animate ${isOpen ? 'open' : ''}`}>
+              <p className="accordion-paragraph-text  text-gray-700 ">
+                {content}
+              </p>
+            </div>
+          </div>
+        )}
+      </li>
+    );
+  };  
 
   return (
     <div className="relative bg-[#f9efe4] min-h-screen">
@@ -104,32 +156,20 @@ const HomePage = () => {
         <div className="max-w-5xl mx-auto text-center">
           <h1 className="text-3xl md:text-6xl font-sans text-stone-800 font-medium tracking-wide leading-[1.5]">
             The Prophetic guide even{' '}
-            <span className="changer-overflow relative inline-block w-[13rem] h-[4.5rem] align-middle overflow-hidden border-b-4 border-blue-600">
-              <div
-                className="changer-move transition-transform duration-700 ease-in-out"
-                style={{ transform: `translateY(-${nameIndex * 4.5}rem)` }}
-              >
-                {rotatingNames.map((name, index) => (
-                  <div key={index} className="changer-text h-[4.5rem] flex items-center justify-center text-blue-600 font-serif text-2xl md:text-6xl">
-                    {name}
-                  </div>
-                ))}
-              </div>
-            </span>
+            <Rotator
+              items={rotatingNames}
+              index={rotatorIndex}
+              className="relative inline-block w-[13rem] h-[4.5rem] align-middle overflow-hidden border-b-4 border-blue-600"
+              itemHeight="4.5rem"
+            />
             <br />
             in{' '}
-            <span className="changer-overflow relative inline-block w-[19rem] h-[4.5rem] align-middle overflow-hidden border-b-4 border-blue-600">
-              <div
-                className="changer-move transition-transform duration-700 ease-in-out"
-                style={{ transform: `translateY(-${placeIndex * 4.6}rem)` }}
-              >
-                {rotatingPlaces.map((place, index) => (
-                  <div key={index} className="changer-text h-[4.5rem] flex items-center justify-center text-blue-600 font-serif text-2xl md:text-6xl">
-                    {place}
-                  </div>
-                ))}
-              </div>
-            </span>{' '}
+            <Rotator
+              items={rotatingPlaces}
+              index={rotatorIndex}
+              className="relative inline-block w-[19rem] h-[4.5rem] align-middle overflow-hidden border-b-4 border-blue-600"
+              itemHeight="4.5rem"
+            />{' '}
             wants to use
           </h1>
           <p className="italic text-xl md:text-2xl text-gray-700 mt-6 font-serif">
@@ -236,28 +276,47 @@ const HomePage = () => {
           <h2 className="text-[56px] leading-[1.0714] font-medium tracking-[-0.005em] font-sf-pro">Middle East</h2>
         </header>
         <div className="accordion-wrapper accordion-pane content-container">
-          <ul className='accordion' role='list' style={{height: 516 +'px'}}>
-            <li className='accordion-item column expanded'></li>
-          </ul>
-          
-
+        <ul className="accordion flex flex-col gap-4" role="list">
+          <AccordionItem
+            title="Israel"
+            content="Israel plays a central role in biblical prophecy, beginning with literal Israel as God's chosen nation. Through Christ, the promises extended to spiritual Israel—all who follow Him by faith. Prophecies once for the physical nation now apply to this faithful body, who uphold God's commandments and His end-time purpose."
+            isOpen={openIndex === 0}
+            onToggle={() => handleToggle(0)}
+          />
+          <AccordionItem
+            title="Babylon"
+            content="Babylon plays an important role in biblical prophecy, that will be fixed in the future."
+            isOpen={openIndex === 1}
+            onToggle={() => handleToggle(1)}
+          />
+          <AccordionItem
+            title="Saudi Arabia"
+            content="Saudi Arabia plays an important role in biblical prophecy, beginning with literal Israel as God's chosen nation. Through Christ, the promises extended to spiritual Israel—all who follow Him by faith. Prophecies once for the physical nation now apply to this faithful body, who uphold God's commandments and His end-time purpose."
+            isOpen={openIndex === 2}
+            onToggle={() => handleToggle(2)}
+          />
+        </ul>
+        <div className="image-container-large">
+          <picture className={`template-image-large ${imageTransition ? 'fade-out' : 'fade-in'}`}>
+            <img
+              src={currentImage}
+              alt={accordionData[openIndex].title}
+              style={{
+                width: '870px',
+                height: '670px',
+                objectFit: 'cover',
+                borderRadius: '10px',
+                marginLeft: '2em',
+                boxShadow: '0 0 20px rgba(2, 0, 0, 0.05)',
+                marginTop: '3em'
+              }}
+            />
+          </picture>
+        </div>
           {/* Right Arrow Button */}
-          <button onClick={nextMap} className="group absolute right-20 top-1/2 transform -translate-y-1/2">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#010f25" className="size-14 transition-transform duration-1000 ease-in-out group-hover:translate-x-8">
-              <path fillRule="evenodd" d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25Zm4.28 10.28a.75.75 0 0 0 0-1.06l-3-3a.75.75 0 1 0-1.06 1.06l1.72 1.72H8.25a.75.75 0 0 0 0 1.5h5.69l-1.72 1.72a.75.75 0 1 0 1.06 1.06l3-3Z" clipRule="evenodd" />
-            </svg>
-          </button>
-
-          {hasClickedNext && (
-            <button onClick={prevMap} className="group absolute left-20 top-1/2 transform -translate-y-1/2 bg-transparent text-stone-900 rounded-full p-2">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#010f25" className="size-14 transition-transform duration-1000 ease-in-out group-hover:-translate-x-8">
-                <path fillRule="evenodd" d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25Zm-4.28 9.22a.75.75 0 0 0 0 1.06l3 3a.75.75 0 1 0 1.06-1.06l-1.72-1.72h5.69a.75.75 0 0 0 0-1.5h-5.69l1.72-1.72a.75.75 0 0 0-1.06-1.06l-3 3Z" clipRule="evenodd" />
-              </svg>
-            </button>
-          )}
         </div>
         </section>
-      <div className="h-20" />
+      <div className="h-20 container"/>
     </div>
   );
 };

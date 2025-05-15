@@ -1,23 +1,18 @@
-/* App Container */
-.App {
-  text-align: left;
-}
-
 /* Scroll-triggered animation */
 .animate-on-scroll {
   opacity: 0;
   transform: translateY(24px);
   transition: all 1.2s ease-out;
 }
-
-.animate-on-scroll-2 {
-  opacity: 0;
-  transform: translateY(24px);
-  transition: all 1.2s ease-out;
-}
 .fade-in {
-  opacity: 1 !important;
-  transform: translateY(0) !important;
+  opacity: 1;
+  transform: scale(1);
+  transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+}
+.fade-out {
+  opacity: 0;
+  transform: scale(1);
+  transition: opacity 2.9s ease-in-out, transform 0.3s ease-in-out;
 }
 
 /* Hide scrollbar for aesthetic scroll */
@@ -29,54 +24,6 @@
   -ms-overflow-style: none;
 }
 
-/* Navbar Styling */
-.navbar-container {
-  max-width: 1200px;
-  margin: 0 auto;
-}
-.navbar-links ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-.navbar-links li a {
-  font-family: 'Roboto', sans-serif;
-  font-size: 1.1rem;
-  color: #000;
-  text-decoration: none;
-  padding-bottom: 0.5rem;
-  position: relative;
-  transition: all 0.4s ease-in-out;
-}
-.navbar-links li a::after {
-  content: '';
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  height: 2px;
-  width: 0;
-  background-color: black;
-  border-radius: 5px;
-  transition: width 0.3s ease-in-out;
-}
-.navbar-links li a:hover::after {
-  width: 100%;
-}
-
-/* Gallery Scroll Padding (Apple-style) */
-:root {
-  --global-viewport-content-responsive: 100vw;
-  --scroll-bar-width: 0px;
-}
-.gallery {
-  position: relative;
-  padding-bottom: 83px;
-  margin-top: 0;
-  --gallery-side-padding: calc(50vw - min(1680px, var(--global-viewport-content-responsive)) / 2 - 3rem);
-  scroll-padding-left: var(--gallery-side-padding);
-  scroll-padding-right: var(--gallery-side-padding);
-}
-
 /* Card Hover (scale + z-index boost) */
 .zoom-card {
   transition: transform 0.55s ease-in-out;
@@ -84,72 +31,6 @@
 .zoom-card:hover {
   transform: scale(1.025);
   z-index: 10;
-}
-
-/* Modal Focus Animation */
-@keyframes modalFocus {
-  from {
-    opacity: 0;
-    transform: scale(0.95);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1.03);
-  }
-}
-.modal-animate {
-  animation: modalFocus 0.26s ease-out forwards;
-}
-
-.scroll-container {
-  margin-left: 6rem;
-  padding-right: 2rem;
-}
-
-/* Scroll animation removed in favor of visible one-at-a-time */
-.animate-scroll-text {
-  animation: none;
-}
-
-/* Hero Section Specific Centering */
-.hero-section {
-  text-align: center;
-}
-
-/* Underline container fix for centering and isolation */
-.hero-section .underline-wrapper {
-  position: relative;
-  display: inline-block;
-  overflow: hidden;
-  vertical-align: bottom;
-  width: 12rem;
-  height: 4rem;
-  padding-bottom: 0.5rem;
-  border-bottom: 4px solid #2563eb;
-}
-
-.hero-section .scrolling-text {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  will-change: transform;
-  transition: transform 0.7s ease-in-out;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.hero-section .scrolling-text div {
-  height: 4rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 2rem;
-  font-weight: 600;
-  color: #2563eb;
-  font-family: serif;
-  width: 100%;
 }
 
 .section-content-responsive {
@@ -165,31 +46,20 @@
   }
 }
 
-.section-augment .section-header-headline {
-  max-width: 100%;
-}
-
-.typography-section-headline {
-  font-size: 56px;
-  line-height: 1.0714285714;
-  font-weight: 600;
-  letter-spacing: -0.005em;
-  font-family: SF Pro Display, SF Pro Icons, Helvetica Neue, Helvetica, Arial, sans-serif;
-
-}
-
-.accordion-wrapper, .card .card-modifier {
-  background: var(--global-section-background-color-alt);
-}
 .accordion-wrapper {
   background-color: #d8d5cc4d;
+  border-radius: 28px;
+  margin-top: 2rem;
+  --accordion-side-padding: 90px;
+  --accordion-width: 350px;
+  --accordion-content-width: 323px;
 }
 @media (min-width: 1069px) {
   .content-container {
     display: grid;
-    grid-template-columns: calc(var(--accordion-width) + var(--accordion-side-padding)*2) 1fr;
-    justify-content: space-between;
-    align-items: center;
+    grid-template-columns: calc(var(--accordion-width) + var(--accordion-side-padding) * 2) 1fr;
+    align-items: start;
+    gap: 2rem;
     overflow: hidden;
     min-height: 784px;
   }
@@ -208,23 +78,22 @@
 }
 
 .accordion-pane .accordion {
-  min-height: var(--accordion-height,auto);
+  min-height: 520px;
   height: auto;
+  width: auto;
 }
 @media (min-width: 1069px) {
   .accordion {
-    width: var(--accordion-width);
+    width: 360px;
   }
 }
 .accordion {
   position: relative;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  height: var(--accordion-height,auto);
-  padding: 120px var(--accordion-side-padding);
-}
-.accordion {
+  justify-content:flex-start;
+  height: 516px;
+  padding: 100px;
   --accordion-button-padding-top: 1em;
   --accordion-button-padding-bottom: 1em;
   --accordion-border-color: rgb(210,210,215);
@@ -249,7 +118,7 @@ ol, ul {
   margin-inline-start: 1.1764705882em;
 }
 
-.accordion .accordion-item:first-of-type {
+.accordion-item:first-of-type {
   border-top: none;
 }
 .accordion-item:first-child {
@@ -257,16 +126,123 @@ ol, ul {
 }
 .accordion-item {
   font-size: 24px;
-  line-height: 1.1666666667;
+  line-height: 1.3666666667;
   font-weight: 600;
-  letter-spacing: .009em;
-  font-family: SF Pro Display,SF Pro Icons,Helvetica Neue,Helvetica,Arial,sans-serif;
+  letter-spacing: .0015em;
+  font-family: Arial, SF Pro Display,SF Pro Icons,Helvetica Neue,Helvetica,sans-serif;
   border-color: var(--accordion-border-color);
   border-top: var(--accordion-border-width) solid var(--accordion-border-color);
 }
-.column {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-  min-width: 0;
+
+.accordion-title {
+  font-size: inherit;
+  line-height: inherit;
+  letter-spacing: inherit;
+  font-family: Arial, SF Pro Display,SF Pro Icons,Helvetica Neue,Helvetica,sans-serif;
+}
+.accordion-button {
+  letter-spacing: inherit;
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  width: 100%;
+  position: relative;
+  padding-top: var(--accordion-button-padding-top);
+  padding-bottom: var(--accordion-button-padding-bottom);
+  margin-top: 1em;
+}
+
+.accordion-title-text {
+  font-size: 25px;
+  line-height: 1.1428571429;
+  font-weight: 500;
+  letter-spacing: .015em;
+  font-family: sans-serif, Arial, SF Pro Display,SF Pro Icons,Helvetica Neue,Helvetica;
+}
+
+.accordion-title .accordion-title-text {
+  max-width: var(--accordion-title-max-width);
+}
+.accordion .accordion-item .accordion-button .accordion-title-text {
+  text-align: start;
+}
+
+.accordion-item.expanded > .accordion-tray {
+  overflow: visible;
+}
+
+.accordion-tray {
+  margin:0;
+  transition: height ease-in-out;
+  transition-duration:800ms
+}
+
+.accordion-content {
+  display:flex;
+  flex-direction:column
+}
+@media(min-width:1069px) {
+  .accordion-content {
+    width:var(--accordion-content-width)
+  }
+}
+
+.accordion-tray .accordion-content .accordion-paragraph-text {
+  font-size:17px;
+  line-height:1.4705882353;
+  font-weight:400;
+  letter-spacing:0.002em;
+  font-family: sans-serif, Arial, SF Pro Display,SF Pro Icons,Helvetica Neue,Helvetica,;
+}
+.accordion-icon {
+  display: inline-block;
+  transition: transform 0.9s ease;
+}
+
+.accordion-icon.rotate-45 {
+  transform: rotate(45deg);
+}
+
+.accordion-item.expanded .accordion-icon {
+  transform: rotate(45deg);
+}
+
+.image-container-large {
+  display: none;
+  pointer-events: none;
+}
+@media (min-width: 1069px) {
+  .image-container-large {
+    display: flex;
+    position: relative;
+    justify-content: left;
+    align-items: center;
+    margin-top: 0;
+  }
+}
+
+
+.accordion-content .image-container img {
+  max-width:100%
+}
+
+@media (min-width: 1069px) {
+  .template-image-large:not(.hidden) {
+    position: relative;
+  }
+}
+.template-image-large {
+  position: absolute;
+}
+
+.accordion-content-animate {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.2s ease, transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: opacity, transform, ease-in-out;
+}
+
+.accordion-content-animate.open {
+  opacity: 1;
+  transform: translateY(0);
 }

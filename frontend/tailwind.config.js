@@ -10,8 +10,8 @@ module.exports = {
         // Add your custom colors here
       },
       fontFamily: {
-        'mono': ['"IBM Plex Mono"', 'monospace'],
-        'sans': ['"IBM Plex Sans Condensed"', 'sans-serif'],
+        'mono': ['\"IBM Plex Mono\"', 'monospace'],
+        'sans': ['\"IBM Plex Sans Condensed\"', 'sans-serif'],
       },
     },
   },
