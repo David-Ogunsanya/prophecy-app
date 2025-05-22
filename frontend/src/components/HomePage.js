@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import '../App.css'; // Make sure your animation CSS is here
 import Rotator from './Rotator';
 
+
 const rotatingNames = ['Elijah', 'Esther', 'John', 'Ruth', 'Daniel'];
 const rotatingPlaces = ['Kings', 'Jerusalem', 'Galilee', 'Patmos', 'Babylon'];
 
@@ -61,16 +62,9 @@ const HomePage = () => {
   const [isScrollVisible, setIsScrollVisible] = useState(false);
   const [isSecondVisible, setIsSecondVisible] = useState(false);
   const [openIndex, setOpenIndex] = useState(0);
-  const [imageTransition, setImageTransition] = useState(false);
 
   const handleToggle = (index) => {
-    if (openIndex !== index) {
-      setImageTransition(true);
-      setTimeout(() => {
-        setOpenIndex(index);
-        setImageTransition(false);
-      }, 300); // Duration matches your CSS transition
-    }
+    setOpenIndex(index);
   };
 
   const currentImage = accordionData[openIndex].image;
@@ -114,6 +108,16 @@ const HomePage = () => {
   const closeModal = () => setActiveModal(null);
 
   const AccordionItem = ({ title, content, isOpen, onToggle }) => {
+    const contentRef = useRef(null);
+    const [height, setHeight] = useState(0);
+
+    useEffect(() => {
+      if (contentRef.current) {
+        const scrollHeight = contentRef.current.scrollHeight;
+        setHeight(isOpen ? scrollHeight : 0);
+      }
+    }, [isOpen, content]);
+
     return (
       <li className="accordion-item border-t border-gray-300">
         <h3 className="accordion-title">
@@ -136,15 +140,20 @@ const HomePage = () => {
             </span>
           </button>
         </h3>
-        {isOpen && (
-          <div className="accordion-tray transition-all duration-300">
-            <div className={`accordion-content pt-2 pb-4 accordion-content-animate ${isOpen ? 'open' : ''}`}>
-              <p className="accordion-paragraph-text  text-gray-700 ">
-                {content}
-              </p>
-            </div>
+        <div
+          ref={contentRef}
+          className="accordion-content-animate"
+          style={{
+            height: height + 'px',
+            visibility: height === 0 ? 'hidden' : 'visible'
+          }}
+        >
+          <div className="accordion-content-inner">
+            <p className="accordion-paragraph-text">
+              {content}
+            </p>
           </div>
-        )}
+        </div>
       </li>
     );
   };  
@@ -273,7 +282,7 @@ const HomePage = () => {
         {/* Map Display */}
         <section className="section-content-responsive">
         <header className="section-header row">
-          <h2 className="text-[56px] leading-[1.0714] font-medium tracking-[-0.005em] font-sf-pro">Middle East</h2>
+          <h2 className="text-[56px] leading-[1.0714] font-medium tracking-[0.005em] font-sf-pro">Middle East</h2>
         </header>
         <div className="accordion-wrapper accordion-pane content-container">
         <ul className="accordion flex flex-col gap-4" role="list">
@@ -297,7 +306,7 @@ const HomePage = () => {
           />
         </ul>
         <div className="image-container-large">
-          <picture className={`template-image-large ${imageTransition ? 'fade-out' : 'fade-in'}`}>
+          <picture className="template-image-large fade-in">
             <img
               src={currentImage}
               alt={accordionData[openIndex].title}
@@ -316,6 +325,76 @@ const HomePage = () => {
           {/* Right Arrow Button */}
         </div>
         </section>
+        <div className="h-20"/>
+
+      <section className="bg-[white] section-content-responsive">
+        <header className="section-header-2 row">
+          <h2 className="text-5xl leading-[1.0714] text-center tracking-[0.05em]">Prophecy of Today</h2>
+          <div>
+            <a href="/" className="text-slate-900 under-header">View More prophecies of Today
+            <div className='under-header-link' style ={{transform: 'none'}}>›</div>
+            </a>
+        </div>
+        </header>
+        <div className='slideshow-container_ slideshow_lmpe'>
+          <div className='slick_slider'>
+            <button className='Arrow_arrow__cF8vK Arrow_button-previous__x1oHV Arrow_circle__O_Ly_ _Index_arrow__t3gBL' aria-label='Previous'>
+              <div className='arrow_previous'>
+                <svg width="27" height="27" viewBox="0 0 27 27" fillRule="none" xmlns="http://www.w3.org/2000/svg">
+                <path fillRule="evenodd" clipRule="evenodd" d="M1.25511 12.5192L0.548009 13.2263L1.25511 13.9334L13.7742 26.4527L15.1884 25.0385L4.45038 14.3003L27 14.3003L27 12.3003L4.30243 12.3003L15.1884 1.41416L13.7742 -6.22232e-05L1.25511 12.5192Z"></path>
+                </svg>
+              </div>
+            </button>
+            <div className='slick-list' style={{padding: '0px 10%'}}>
+              <div className='slick-track' style={{ width: '17300px', opacity: '1', transform: "translate3d(-5536px, 0px, 0px)" }}>
+                <div className='slick-slide slick-active slick-center slick-current' style={{outline: 'none', width: '692px', height: '400px'}}>
+                    <div>
+                      <div tabIndex='0' style={{width: '692px', display: 'inline-block'}}>
+                        <div className='HalfSlildeItem_container__lsLLZ'>
+                          <div className='HalfSlildeItem_image__gglIV' style={{ width: '100%', paddingBottom: '56%', position: 'relative', overflow: 'hidden' }}>
+                            <span style={{
+                              boxSizing: 'border-box',
+                              display: 'block',
+                              overflow: 'hidden',
+                              width: '100%',
+                              height: '100%',
+                              background: 'none',
+                              opacity: '1',
+                              border: '0px',
+                              margin: '0px',
+                              padding: '0px',
+                              position: 'absolute',
+                              inset: '0px'
+                            }}>
+                              <img
+                                className='ImageComponent_image__nggAa chromatic-ignore ImageComponent_loaded___Fyzt'
+                                alt='love_of_many_went_cold'
+                                src='/images/fighting_prophecy.png'
+                                style={{
+                                  position: 'absolute',
+                                  inset: '0px',
+                                  boxSizing: 'border-box',
+                                  padding: '0px',
+                                  border: 'none',
+                                  margin: 'auto',
+                                  display: 'block',
+                                  width: '100%',
+                                  height: '100%',
+                                  objectFit: 'cover',
+                                  objectPosition: 'center center'
+                                }}
+                              />
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
       <div className="h-20 container"/>
     </div>
   );

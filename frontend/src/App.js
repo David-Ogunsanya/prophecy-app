@@ -14,12 +14,13 @@ import RegisterForm from './components/RegisterForm';
 import VersesList from './components/VersesList';
 import VerseForm from './components/VerseForm';
 import ProphecyTool from './pages/timeline_history';
-import * as THREE from 'three';
+
 
 function Layout({ children }) {
   const location = useLocation();
   const hideNav = location.pathname === '/Prophecy Tool';
   const [hasScrolled, setHasScrolled] = useState(false);
+  const [mobileNavOpen, setMobileNavOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -44,8 +45,21 @@ function Layout({ children }) {
             <div className="navbar-logo font-bold text-xl">
               <Link to="/">Sealed Scriptures</Link>
             </div>
-            {/* Center: Navigation Links */}
-            <nav className="navbar-links">
+            {/* Hamburger button (mobile only) */}
+            <button
+              className="hamburger md:hidden"
+              aria-label="Open navigation"
+              onClick={() => {
+                console.log('Hamburger clicked');
+                setMobileNavOpen(!mobileNavOpen);
+              }}
+            >
+              <span className="block w-6 h-0.5 bg-black mb-1"></span>
+              <span className="block w-6 h-0.5 bg-black mb-1"></span>
+              <span className="block w-6 h-0.5 bg-black"></span>
+            </button>
+            {/* Desktop nav (hidden on mobile) */}
+            <nav className="navbar-links hidden md:block">
               <ul className="flex gap-6 items-center">
                 <li>
                   <Link to="/">Home</Link>
@@ -67,8 +81,7 @@ function Layout({ children }) {
                 </li>
               </ul>
             </nav>
-            {/* Right: Optional action buttons */}
-            <div className="navbar-actions flex gap-3">
+            <div className="navbar-actions flex gap-3 hidden md:flex">
               <button className="border border-black px-4 py-1 rounded-full hover:bg-black hover:text-white transition">
                 Book a demo
               </button>
@@ -77,6 +90,41 @@ function Layout({ children }) {
               </button>
             </div>
           </div>
+          {/* Mobile nav menu */}
+          {mobileNavOpen && (
+            <div className="mobile-nav-menu md:hidden">
+              <nav className="navbar-links">
+                <ul>
+                  <li>
+                    <Link to="/">Home</Link>
+                  </li>
+                  <li>
+                    <Link to="/login">Login</Link>
+                  </li>
+                  <li>
+                    <Link to="/register">Register</Link>
+                  </li>
+                  <li>
+                    <Link to="/verses">Verses</Link>
+                  </li>
+                  <li>
+                    <Link to="/add-verse">Add Verse</Link>
+                  </li>
+                  <li>
+                    <Link to="/Prophecy Tool">Prophecy Tool</Link>
+                  </li>
+                </ul>
+              </nav>
+              <div className="navbar-actions flex gap-3">
+                <button className="border border-black px-4 py-1 rounded-full hover:bg-black hover:text-white transition">
+                  Book a demo
+                </button>
+                <button className="bg-black text-white px-4 py-1 rounded-full hover:bg-gray-800 transition">
+                  Start for free
+                </button>
+              </div>
+            </div>
+          )}
         </header>
       )}
 
