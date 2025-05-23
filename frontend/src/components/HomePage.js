@@ -345,55 +345,27 @@ const HomePage = () => {
                 </svg>
               </div>
             </button>
-            <div className='slick-list' style={{padding: '0px 10%'}}>
-              <div className='slick-track' style={{ width: '17300px', opacity: '1', transform: "translate3d(-5536px, 0px, 0px)" }}>
-                <div className='slick-slide slick-active slick-center slick-current' style={{outline: 'none', width: '692px', height: '400px'}}>
-                    <div>
-                      <div tabIndex='0' style={{width: '692px', display: 'inline-block'}}>
-                        <div className='HalfSlildeItem_container__lsLLZ'>
-                          <div className='HalfSlildeItem_image__gglIV' style={{ width: '100%', paddingBottom: '56%', position: 'relative', overflow: 'hidden' }}>
-                            <span style={{
-                              boxSizing: 'border-box',
-                              display: 'block',
-                              overflow: 'hidden',
-                              width: '100%',
-                              height: '100%',
-                              background: 'none',
-                              opacity: '1',
-                              border: '0px',
-                              margin: '0px',
-                              padding: '0px',
-                              position: 'absolute',
-                              inset: '0px'
-                            }}>
-                              <img
-                                className='ImageComponent_image__nggAa chromatic-ignore ImageComponent_loaded___Fyzt'
-                                alt='love_of_many_went_cold'
-                                src='/images/fighting_prophecy.png'
-                                style={{
-                                  position: 'absolute',
-                                  inset: '0px',
-                                  boxSizing: 'border-box',
-                                  padding: '0px',
-                                  border: 'none',
-                                  margin: 'auto',
-                                  display: 'block',
-                                  width: '100%',
-                                  height: '100%',
-                                  objectFit: 'cover',
-                                  objectPosition: 'center center'
-                                }}
-                              />
-                            </span>
+            <div className="slick-list">
+              <div className="slick-track" style={{width: '11764px', opacity: '1', transform: "translate3d(-1384px, 0px, 0px)"}}>
+                <div className="slick-slide slick-active slick-center slick-current" style={{outline: 'none', width: '692px'}}>
+                  <div>
+                    <div tabIndex="0">
+                      <div className="HalfSlildeItem_container__lsLLZ">
+                        <div className="HalfSlildeItem_image__gglIV">
+                          <img
+                            className="ImageComponent_image__nggAa"
+                            alt="love_of_many_went_cold"
+                            src="/images/fighting_prophecy.png"
+                          />
                           </div>
                         </div>
                       </div>
                     </div>
+                  </div>
+                </div>
                 </div>
               </div>
             </div>
-          </div>
-        </div>
       </section>
       <div className="h-20 container"/>
     </div>
