@@ -4,6 +4,13 @@ module.exports = {
     "./src/**/*.{js,jsx,ts,tsx}",
     "./public/index.html"
   ],
+  options: {
+    safelist: [
+      "slide-left-translate",
+        "slide-right-translate",
+        "no-transform",
+    ],
+  },
   theme: {
     extend: {
       colors: {
@@ -12,8 +19,12 @@ module.exports = {
       fontFamily: {
         'mono': ['\"IBM Plex Mono\"', 'monospace'],
         'sans': ['\"IBM Plex Sans Condensed\"', 'sans-serif'],
+        graphik: ['Graphik', 'Arial', 'sans-serif'],
+        sangbleu: ['SangBleu', 'Georgia', 'serif'],
       },
     },
   },
-  plugins: [],
+  plugins: [
+    require('tailwind-scrollbar'),
+  ],
 }

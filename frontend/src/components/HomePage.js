@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import '../App.css'; // Make sure your animation CSS is here
 import Rotator from './Rotator';
+import ProphecyTodayCarousel from './ProphecyTodayCarousel';
 
 
 const rotatingNames = ['Elijah', 'Esther', 'John', 'Ruth', 'Daniel'];
@@ -16,6 +17,7 @@ const prophecyCards = [
     title: 'Matthew 24:14',
     image: '/images/Matthew_24_14.png',
     text: 'Jesus makes a prophecy about the world.',
+    link: 'https://www.bible.com/bible/1/MAT.24.14.niv',
   },
   {
     title: 'Daniel 7',
@@ -159,9 +161,9 @@ const HomePage = () => {
   };  
 
   return (
-    <div className="relative bg-[#f9efe4] min-h-screen">
+    <div className="relative bg-[white] min-h-screen">
       {/* Hero Section */}
-      <section className="pt-24 pb-20 px-6 bg-[#f9efe4]">
+      <section className="pt-24 pb-20 px-6 bg-[white]">
         <div className="max-w-5xl mx-auto text-center">
           <h1 className="text-3xl md:text-6xl font-sans text-stone-800 font-medium tracking-wide leading-[1.5]">
             The Prophetic guide even{' '}
@@ -196,7 +198,7 @@ const HomePage = () => {
       </section>
 
       {/* About Section */}
-      <div className="bg-[#f9efe4] flex justify-center p-10">
+      <div className="bg-[white] flex justify-center p-10">
         <div className="max-w-7xl flex flex-wrap md:flex-nowrap gap-10 text-left">
           <div className="md:w-2/3 space-y-10 ml-6">
             <h2 className="text-4xl font-[arial] uppercase">About Us</h2>
@@ -221,7 +223,7 @@ const HomePage = () => {
       </div>
 
       {/* Prophecy Section */}
-      <section className="bg-[#f9efe4] py-32 relative overflow-visible">
+      <section className="bg-[white] py-32 relative overflow-visible">
         <div ref={scrollSectionRef} className={`animate-on-scroll ${isScrollVisible ? 'fade-in' : ''}`}>
           <div className="w-screen flex min-h-[700px] overflow-x-auto scroll-smooth hide-scrollbar gap-16 pl-12 pr-10">
             {prophecyCards.map((card, index) => (
@@ -232,7 +234,7 @@ const HomePage = () => {
               >
                 <div className="w-full h-full overflow-hidden rounded-[32px]">
                   {card.image ? (
-                    <img src={card.image} alt={card.title} className="w-full h-full object-cover rounded-[32px]" />
+                    <img src={card.image} alt={card.title} href={card.link} className="w-full h-full object-cover rounded-[32px]" />
                   ) : (
                     <div className="w-full h-full bg-gray-300 flex items-center justify-center text-gray-600 text-center px-4 rounded-[32px]">
                       <p>No image available</p>
@@ -260,7 +262,7 @@ const HomePage = () => {
       </section>
 
       {/* Second Section */}
-      <section ref={secondSectionRef} className={`bg-[#f9efe4] py-2 px-6 animate-on-scroll ${isSecondVisible ? 'fade-in' : ''}`}>
+      <section ref={secondSectionRef} className={`bg-[white] py-2 px-6 animate-on-scroll ${isSecondVisible ? 'fade-in' : ''}`}>
         <div className="text-left md:text-center mb-10">
           <h2 className="text-4xl md:text-5xl font-[Open_Sans] tracking-wide text-stone-900 mb-4">
             Discover Prophecies in different parts of the World.
@@ -280,7 +282,7 @@ const HomePage = () => {
         </section>
 
         {/* Map Display */}
-        <section className="section-content-responsive">
+        <section className="section-accordion mt-20">
         <header className="section-header row">
           <h2 className="text-[56px] leading-[1.0714] font-medium tracking-[0.005em] font-sf-pro">Middle East</h2>
         </header>
@@ -321,51 +323,23 @@ const HomePage = () => {
               }}
             />
           </picture>
-        </div>
-          {/* Right Arrow Button */}
-        </div>
+          </div>
+          </div>
         </section>
         <div className="h-20"/>
 
-      <section className="bg-[white] section-content-responsive">
-        <header className="section-header-2 row">
-          <h2 className="text-5xl leading-[1.0714] text-center tracking-[0.05em]">Prophecy of Today</h2>
-          <div>
-            <a href="/" className="text-slate-900 under-header">View More prophecies of Today
-            <div className='under-header-link' style ={{transform: 'none'}}>›</div>
+      <section className="bg-white section-content-responsive-2 py-16">
+        <header className="section-header-2 mb-8">
+          <h2 className="text-5xl leading-tight text-center">Prophecy of Today</h2>
+          <div className="flex justify-center mt-2">
+            <a href="/" className="text-slate-900 under-header flex items-center gap-1">
+              View More prophecies of Today
+              <span className="under-header-link text-2xl">›</span>
             </a>
-        </div>
+          </div>
         </header>
-        <div className='slideshow-container_ slideshow_lmpe'>
-          <div className='slick_slider'>
-            <button className='Arrow_arrow__cF8vK Arrow_button-previous__x1oHV Arrow_circle__O_Ly_ _Index_arrow__t3gBL' aria-label='Previous'>
-              <div className='arrow_previous'>
-                <svg width="27" height="27" viewBox="0 0 27 27" fillRule="none" xmlns="http://www.w3.org/2000/svg">
-                <path fillRule="evenodd" clipRule="evenodd" d="M1.25511 12.5192L0.548009 13.2263L1.25511 13.9334L13.7742 26.4527L15.1884 25.0385L4.45038 14.3003L27 14.3003L27 12.3003L4.30243 12.3003L15.1884 1.41416L13.7742 -6.22232e-05L1.25511 12.5192Z"></path>
-                </svg>
-              </div>
-            </button>
-            <div className="slick-list">
-              <div className="slick-track" style={{width: '11764px', opacity: '1', transform: "translate3d(-1384px, 0px, 0px)"}}>
-                <div className="slick-slide slick-active slick-center slick-current" style={{outline: 'none', width: '692px'}}>
-                  <div>
-                    <div tabIndex="0">
-                      <div className="HalfSlildeItem_container__lsLLZ">
-                        <div className="HalfSlildeItem_image__gglIV">
-                          <img
-                            className="ImageComponent_image__nggAa"
-                            alt="love_of_many_went_cold"
-                            src="/images/fighting_prophecy.png"
-                          />
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                </div>
-              </div>
-            </div>
+        {/* Carousel Implementation */}
+        <ProphecyTodayCarousel />
       </section>
       <div className="h-20 container"/>
     </div>

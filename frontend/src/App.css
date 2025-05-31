@@ -1,4 +1,4 @@
-/* 1. Base and component styles */
+
 
 /* Utility and animation classes */
 .animate-on-scroll {
@@ -31,11 +31,12 @@
 }
 
 /* Layout and section styles */
-.section-content-responsive {
+.section-accordion {
   margin-inline-start: auto;
   margin-inline-end: auto;
-  width: 87.5vw;
+  width: 91.5vw;
   max-width: 1680px;
+  height: 836px;
 }
 
 .section-header {
@@ -52,11 +53,10 @@
   font-weight: 500;
   letter-spacing: 0.01em;
   color: #191818;
-  font-family: var(--headline-font,"SangBleu","Georgia",serif);
 }
 
 .under-header {
-  font-family: Graphik Regular,Helvetica,Arial,sans-serif;
+  font-family: Graphik,Helvetica,Arial,sans-serif;
   font-size: 16px;
   line-height: 1.4;
   color: #071531;
@@ -258,8 +258,10 @@ ol, ul {
 }
 .slick-list {
   overflow: hidden;
-  margin: 0;
-  padding: 0;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  position: relative;
 }
 .slick-list, .slick-slider {
   position: relative;
@@ -274,12 +276,7 @@ ol, ul {
   position: relative;
   display: block;
 }
-.HalfSlildeItem_image__gglIV {
-  width: 100%;
-  padding-bottom: 56%; /* 16:9 aspect ratio */
-  position: relative;
-  overflow: hidden;
-}
+
 
 
 @media (min-width: 768px) {
@@ -302,10 +299,8 @@ ol, ul {
   position: relative;
   top: 0;
   left: 0;
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  height: 400px;
+  display: flex;
+  transition: transform 0.5s cubic-bezier(0.33, 1, 0.68, 1);
 }
 
 /* 1. Base and component styles */
@@ -341,11 +336,12 @@ ol, ul {
 }
 
 /* Layout and section styles */
-.section-content-responsive {
+.section-content-responsive-2 {
   margin-inline-start: auto;
   margin-inline-end: auto;
-  width: 87.5vw;
-  max-width: 1680px;
+  width: 100vw;
+  max-width: 1728px;
+  height: 836px;
 }
 
 .section-header-2 {
@@ -353,7 +349,7 @@ ol, ul {
 }
 
 .section-header-2 h2 {
-  font-size: 50px;
+  font-size: 65px;
   line-height: 1.1;
   font-weight: 500;
   letter-spacing: 0.01em;
@@ -437,8 +433,10 @@ ol, ul {
 /* Image Container Fix */
 .HalfSlildeItem_image__gglIV {
   width: 100%;
+  height: 0;
   padding-bottom: 56%; /* 16:9 aspect ratio */
   position: relative;
+  margin-bottom:16px;
   overflow: hidden;
 }
 
@@ -450,11 +448,48 @@ ol, ul {
   justify-content: flex-start;
 }
 
-@media (min-width: 768px) {
-  .HalfSlildeItem_container__lsLLZ {
-    padding: 0 calc(20px/2) 32px;
-  }
+.text_prophecy_today {
+  font-size: 16px;
+  line-height: 1.4;
+  letter-spacing: 0.08em;
+  font-weight: 500;
+  font-family: Graphik,Helvetica,Arial,sans-serif;
+  font-size: 14px;
+  line-height: 1.4;
+  text-transform: uppercase;
+  color: #071531;
+  white-space: pre-wrap;
+  margin-top: 16px;
+  margin-left: 0px;
 }
+
+.blurred-edge-container {
+  position: relative;
+  overflow: hidden;
+}
+
+.blur-overlay {
+  position: absolute;
+  top: 0;
+  width: 224px;
+  height: 557px;
+  z-index: 20;
+  pointer-events: none;
+}
+
+.blur-left {
+  left: 0;
+  background: linear-gradient(to right, rgba(255,255,255,0.7) 60%, rgba(255,255,255,0));
+  backdrop-filter: blur(10px);
+}
+
+.blur-right {
+  right: 0;
+  background: linear-gradient(to left, rgba(255,255,255,0.7) 60%, rgba(255,255,255,0));
+  backdrop-filter: blur(10px);
+}
+
+
 
 @media (min-width: 768px) {
   ._Index_extended__PtHbp ._Index_slideshow__lmIPe .slick-track {
@@ -692,22 +727,45 @@ ol, ul {
   }
 }
 
-@media (min-width: 768px) {
-  .HalfSlildeItem_container__lsLLZ {
-    padding: 0 calc(20px/2) 32px;
+
+.card-transition {
+  transition: width 0.5s ease, filter 0.5s ease;
+}
+
+.card-blur {
+  width: 8rem;
+  filter: blur(10px);
+}
+
+.card-clear {
+  width: 800px;
+  filter: blur(0px);
+}
+
+@keyframes full-slide-left {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-696px); /* 672 + 24 (gap-6) */
   }
 }
-.HalfSlildeItem_container__lsLLZ {
-  padding: 0 0 32px;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-}
-@media (min-width: 768px) {
-  .HalfSlildeItem_container__lsLLZ {
-    padding: 0 calc(20px/2) 32px;
+
+@keyframes full-slide-right {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(796px);
   }
 }
-.HalfSlildeItem_container__lsLLZ {
-  padding: 0 0 32px;
+
+.slide-left {
+  animation: full-slide-left 1.4s ease-in-out;
 }
+
+.slide-right {
+  animation: full-slide-right 1.4s ease-in-out;
+}
+
+

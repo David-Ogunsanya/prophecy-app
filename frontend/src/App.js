@@ -35,7 +35,7 @@ function Layout({ children }) {
     <div className="flex flex-col min-h-screen">
       {!hideNav && (
         <header
-          style={{ backgroundColor: '#f9efe4' }}
+          style={{ backgroundColor: '#ffffff' }}
           className={`sticky top-0 z-50 text-black font-sans text-lg p-4 tracking-wide transition-shadow duration-300 ${
             hasScrolled ? 'shadow-md' : ''
           }`}
@@ -81,7 +81,7 @@ function Layout({ children }) {
                 </li>
               </ul>
             </nav>
-            <div className="navbar-actions flex gap-3 hidden md:flex">
+            <div className="navbar-actions flex gap-3 overflow-hidden  md:flex">
               <button className="border border-black px-4 py-1 rounded-full hover:bg-black hover:text-white transition">
                 Book a demo
               </button>
