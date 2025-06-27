@@ -71,7 +71,7 @@ function Layout({ children }) {
                   <Link to="/register">Register</Link>
                 </li>
                 <li>
-                  <Link to="/verses">Verses</Link>
+                  <Link to="/verses">Books</Link>
                 </li>
                 <li>
                   <Link to="/add-verse">Add Verse</Link>
@@ -105,7 +105,7 @@ function Layout({ children }) {
                     <Link to="/register">Register</Link>
                   </li>
                   <li>
-                    <Link to="/verses">Verses</Link>
+                    <Link to="/verses">Books</Link>
                   </li>
                   <li>
                     <Link to="/add-verse">Add Verse</Link>
