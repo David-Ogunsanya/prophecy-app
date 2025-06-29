@@ -65,10 +65,8 @@ function VersesList() {
                     <div className="bg-gray-400" style={{width: "846px", height: "580px"}}>01</div>
                     <div className="" style={{width: "846px", height: "580px", 
                         backgroundColor: "rgb(1, 1, 12)"}}>
-                            <figure>
-                                <img src="/images/isaiah_vision.png" alt="" style={{width: "846px", height: "650px"}} />
-                            </figure>
-                        </div>
+                            <img src="/images/isaiah_vision.png" alt="" />
+                    </div>
                 </div>
             </section>
             <div className="bg-white mt-20"></div>

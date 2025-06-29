@@ -11,7 +11,7 @@ import './App.css';
 import HomePage from './components/HomePage';
 import LoginForm from './components/LoginForm';
 import RegisterForm from './components/RegisterForm';
-import VersesList from './components/VersesList';
+import Books from './components/books';
 import VerseForm from './components/VerseForm';
 import ProphecyTool from './pages/timeline_history';
 
@@ -147,7 +147,7 @@ function App() {
         <Route path="/" element={<Layout><HomePage /></Layout>} />
         <Route path="/login" element={<Layout><LoginForm /></Layout>} />
         <Route path="/register" element={<Layout><RegisterForm /></Layout>} />
-        <Route path="/verses" element={<Layout><VersesList /></Layout>} />
+        <Route path="/verses" element={<Layout><Books /></Layout>} />
         <Route path="/add-verse" element={<Layout><VerseForm /></Layout>} />
         <Route path="/Prophecy Tool" element={<Layout><ProphecyTool /></Layout>} />
       </Routes>
