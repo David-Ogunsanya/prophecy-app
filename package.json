@@ -4,6 +4,7 @@
     "@react-three/drei": "^10.0.6",
     "@react-three/fiber": "^9.1.2",
     "@types/three": "^0.175.0",
+    "openai": "^5.10.1",
     "react-router-dom": "^7.0.1",
     "react-slick": "^0.30.3",
     "sass": "^1.89.2",

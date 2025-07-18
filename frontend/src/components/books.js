@@ -8,19 +8,7 @@ function VersesList() {
     return (
         <div className="bg-white min-h-screen">
             <section style={{width: "1728px", height: "1180px", backgroundColor: "white"}}>
-                <div className="inset-y-3" style={{width: "1728px", height: "580px", background: "linear-gradient(to right, #2f3e49, #1c252b, #121619, #0e1114)"}}>
-                    <div className="grid grid-cols-2 pt-3 pb-10" style={{width: "1728px", height: "580px"}}>
-                        <div className=" font-sans text-8xl font-normal" style={{height: "540px"}}>
-                            <h1 className="mt-40 ml-20 text-slate-100">Daniel</h1>
-                            <p className="text-xl ml-20 font-graphik mt-3 text-slate-100">The Book of Daniel filled with prophecies. Visions stories about a particular king.</p>
-                            <button className="bg-gray-600 text-white font-sans text-lg py-2 px-4 rounded-full hover:bg-slate-600 transition duration-300 mt-3 ml-20">Learn More</button>
-                            <button className="bg-transparent box-border-white text-white font-sans text-lg py-2 px-4 rounded-full hover:bg-slate-600 transition duration-300 mt-3 ml-20">Summary</button>
-                        </div>
-                        <div className="flex justify-center ml-20 -mt-4" style={{height: "540px"}}>
-                            <img src="/images/daniel_image_no_bg.png" alt="" className="" style={{ height: "650px"}}/>
-                        </div>
-                    </div>
-                </div>
+                
 
                 <div className="shooting-star-container inset-y-2 shadow-lg" style={{ width: "1728px", height: "580px", position: "relative", overflow: "hidden" }}>
                     <div className="night">
@@ -58,14 +46,63 @@ function VersesList() {
 
                     </div>
                 </div>
+                <div className="inset-y-3 mt-4" style={{width: "1728px", height: "580px", background: "linear-gradient(to right, #2f3e49, #1c252b, #121619, #0e1114)"}}>
+                    <div className="grid grid-cols-2 pt-3 pb-10" style={{width: "1728px", height: "580px"}}>
+                        <div className=" font-sans text-8xl font-normal" style={{height: "540px"}}>
+                            <h1 className="mt-40 ml-20 text-slate-100">Daniel</h1>
+                            <p className="text-xl ml-20 font-graphik mt-3 text-slate-100">The Book of Daniel filled with prophecies. Visions stories about a particular king.</p>
+                            <button className="bg-gray-600 text-white font-sans text-lg py-2 px-4 rounded-full hover:bg-slate-600 transition duration-300 mt-3 ml-20">Learn More</button>
+                            <button className="bg-transparent box-border-white text-white font-sans text-lg py-2 px-4 rounded-full hover:bg-slate-600 transition duration-300 mt-3 ml-20">Summary</button>
+                        </div>
+                        <div className="flex justify-center ml-20 -mt-4" style={{height: "540px"}}>
+                            <img src="/images/daniel_image_no_bg.png" alt="" className="" style={{ height: "650px"}}/>
+                        </div>
+                    </div>
+                </div>
 
             </section>
-            <section className="bg-white" style={{width: "1728px", height: "1200px"}}>
-                <div className="grid grid-cols-2 ml-3">
-                    <div className="bg-gray-400" style={{width: "846px", height: "580px"}}>01</div>
-                    <div className="" style={{width: "846px", height: "580px", 
-                        backgroundColor: "rgb(1, 1, 12)"}}>
-                            <img src="/images/isaiah_vision.png" alt="" />
+            <section className="bg-white" style={{width: "1728px", height: "1250px"}}>
+                <div className="grid grid-cols-2 ml-3 mt-2">
+                    <div className="relative bg-[#f5f5f7]" style={{width: "849px", height: "590px"}}>
+                        <div className="absolute justify-center items-center ml-[16em] mt-[2em] text-white px-4 py-2 rounded">
+                            <h1 className="text-7xl tracking-wide text-slate-950 font-sans">Ezekiel</h1>
+                            <p className="text-xl font-sans text-slate-950  tracking-wider">
+                                Will replace in the future
+                            </p>
+                            <button className="bg-[#0071e3] text-white font-sans text-lg py-2 px-4 rounded-full border-black">
+                                Learn More
+                            </button>
+                            <button
+                                className="text-[#0071e3] border-blue-700 font-sans text-lg py-2 px-4 rounded-full"
+                                style={{ border: "1px solid #0071e3" }}
+                                >
+                                Summary
+                            </button>
+                        </div>
+                    </div>
+                    <div className="relative" style={{ width: "858px", height: "590px", backgroundColor: "rgb(1, 1, 12)" }}>
+                        <img src="/images/isaiah_looking_up.png" alt="" className="w-full h-full object-cover" />                  
+                        {/* Text Overlay */}
+                        <div className="absolute bottom-[14em] left-0 text-white px-4 py-2 rounded">
+                            <h1 className="text-7xl ml-[6.8em] tracking-wide text-slate-100 font-sans">Isaiah</h1>
+                            <p className="text-xl font-sans text-slate-100 w-[26em] ml-[20em] mt-[1em] tracking-wider">
+                                Visions stories about different future events
+                            </p>
+                            <button className="bg-[#0071e3] text-white font-sans text-lg py-2 px-4 rounded-full border-black ml-[25em] mt-[2em]">
+                                Learn More
+                            </button>
+                            <button
+                                className="text-[#0071e3] border-blue-700 font-sans text-lg py-2 px-4 rounded-full mt-3 ml-[2.6em]"
+                                style={{ border: "1px solid #0071e3" }}
+                                >
+                                Summary
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div className="grid grid-cols-2 ml-3 mt-2">
+                    <div className="bg-[#0e0e0f]" style={{width: "846px", height: "580px"}}>02</div>
+                    <div className="relative" style={{width: "846px", height: "580px", backgroundColor: "rgb(245, 245, 247)"}}>    
                     </div>
                 </div>
             </section>
