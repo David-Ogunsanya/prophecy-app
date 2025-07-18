@@ -6,10 +6,8 @@ import './shooting_stars.scss';
 function VersesList() {
 
     return (
-        <div className="bg-white min-h-screen">
+        <div className="bg-white max-w-full min-h-screen overflow-hidden">
             <section style={{width: "1728px", height: "1180px", backgroundColor: "white"}}>
-                
-
                 <div className="shooting-star-container inset-y-2 shadow-lg" style={{ width: "1728px", height: "580px", position: "relative", overflow: "hidden" }}>
                     <div className="night">
                         {[...Array(20)].map((_, i) => {
@@ -61,7 +59,7 @@ function VersesList() {
                 </div>
 
             </section>
-            <section className="bg-white" style={{width: "1728px", height: "1250px"}}>
+            <section className="bg-white" style={{width: "1728px", height: "1780px"}}>
                 <div className="grid grid-cols-2 ml-3 mt-2">
                     <div className="relative bg-[#f5f5f7]" style={{width: "849px", height: "590px"}}>
                         <div className="absolute justify-center items-center ml-[16em] mt-[2em] text-white px-4 py-2 rounded">
@@ -101,12 +99,45 @@ function VersesList() {
                     </div>
                 </div>
                 <div className="grid grid-cols-2 ml-3 mt-2">
-                    <div className="bg-[#0e0e0f]" style={{width: "846px", height: "580px"}}>02</div>
-                    <div className="relative" style={{width: "846px", height: "580px", backgroundColor: "rgb(245, 245, 247)"}}>    
+                    <div className="bg-[#0e0e0f]" style={{width: "846px", height: "580px"}}>Jeremiah</div>
+                    <div className="relative" style={{width: "846px", height: "580px", backgroundColor: "white"}}>
+                        Joel    
+                    </div>
+                </div>
+                <div className="grid grid-cols-2 ml-3 mt-2">
+                    <div className="bg-[gray]" style={{width: "846px", height: "580px"}}>Matthew</div>
+                    <div className="relative" style={{width: "846px", height: "580px", backgroundColor: "black"}}>    
                     </div>
                 </div>
             </section>
-            <div className="bg-white mt-20"></div>
+            <section className="bg-white" style={{width: "1728px", height: "1580px"}}>
+                <div className="flex flex-nowrap justify-center items-center gap-4">
+                    <div>
+                        <a href="#" className='justify-self-start' style={{width: "1265px", height: "667px", backgroundImage: "url(/images/isaiah_looking_up.png)", backgroundSize: "cover",
+                        display: "block", backgroundPosition: "center"}} ></a>
+                    </div>
+
+                    <div>
+                        <a href="#" className='justify-self-start' style={{width: "1265px", height: "667px", backgroundImage: "url(/images/isaiah_looking_up.png)", backgroundSize: "cover",
+                        display: "block", backgroundPosition: "center"}} ></a>
+                    </div>
+                    <div>
+                        <a href="#" className='justify-self-start' style={{width: "1265px", height: "667px", backgroundImage: "url(/images/isaiah_looking_up.png)", backgroundSize: "cover",
+                        display: "block", backgroundPosition: "center"}} ></a>
+                    </div>
+                    <div>
+                        <a href="#" className='justify-self-start' style={{width: "1265px", height: "667px", backgroundImage: "url(/images/isaiah_looking_up.png)", backgroundSize: "cover",
+                        display: "block", backgroundPosition: "center"}} ></a>
+                    </div>\<div>
+                        <a href="#" className='justify-self-start' style={{width: "1265px", height: "667px", backgroundImage: "url(/images/isaiah_looking_up.png)", backgroundSize: "cover",
+                        display: "block", backgroundPosition: "center"}} ></a>
+                    </div>
+                </div>
+                
+
+
+            </section>
+                
         </div>
     );
 }

@@ -32,7 +32,7 @@ function Layout({ children }) {
   }, []);
 
   return (
-    <div className="flex flex-col min-h-screen">
+    <>
       {!hideNav && (
         <header
           style={{ backgroundColor: '#ffffff' }}
@@ -136,7 +136,7 @@ function Layout({ children }) {
           <p>© 2024 Sealed Scriptures. All rights reserved.</p>
         </footer>
       )}
-    </div>
+    </>
   );
 }
 
