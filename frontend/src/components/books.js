@@ -1,9 +1,17 @@
 import React, { useEffect, useState } from 'react';
-import API from './api';
 import './shooting_stars.scss';
 
 
-function VersesList() {
+
+export default function ProphecyCarousel() {
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const images = [
+    "/images/isaiah_looking_up.png",
+    "/images/isaiah_looking_up.png",
+    "/images/isaiah_looking_up.png",
+    "/images/isaiah_looking_up.png",
+    "/images/isaiah_looking_up.png",
+  ];
 
     return (
         <div className="bg-white max-w-full min-h-screen overflow-hidden">
@@ -110,36 +118,48 @@ function VersesList() {
                     </div>
                 </div>
             </section>
-            <section className="bg-white" style={{width: "1728px", height: "1580px"}}>
-                <div className="flex flex-nowrap justify-center items-center gap-4">
-                    <div>
-                        <a href="#" className='justify-self-start' style={{width: "1265px", height: "667px", backgroundImage: "url(/images/isaiah_looking_up.png)", backgroundSize: "cover",
-                        display: "block", backgroundPosition: "center"}} ></a>
+            <section className="bg-white" style={{ width: "1728px", height: "800px" }}>
+                <div className="overflow-hidden w-full h-[667px] relative">
+                <div
+                    className="flex transition-transform duration-1000 ease-in-out"
+                    style={{
+                    width: `${images.length * 100}%`,
+                    transform: `translateX(-${currentIndex * (100 / images.length)}%)`,
+                    }}
+                >
+                    {images.map((src, index) => (
+                    <div key={index} className="flex-shrink-0 flex justify-center items-center" style={{ width: `${100 / images.length}%` }}>
+                        <a
+                        href="#"
+                        className=""
+                        style={{
+                            width: "1230px",
+                            height: "667px",
+                            backgroundImage: `url(${src})`,
+                            backgroundSize: "cover",
+                            backgroundPosition: "center",
+                            display: "block",
+                        }}
+                        ></a>
                     </div>
-
-                    <div>
-                        <a href="#" className='justify-self-start' style={{width: "1265px", height: "667px", backgroundImage: "url(/images/isaiah_looking_up.png)", backgroundSize: "cover",
-                        display: "block", backgroundPosition: "center"}} ></a>
-                    </div>
-                    <div>
-                        <a href="#" className='justify-self-start' style={{width: "1265px", height: "667px", backgroundImage: "url(/images/isaiah_looking_up.png)", backgroundSize: "cover",
-                        display: "block", backgroundPosition: "center"}} ></a>
-                    </div>
-                    <div>
-                        <a href="#" className='justify-self-start' style={{width: "1265px", height: "667px", backgroundImage: "url(/images/isaiah_looking_up.png)", backgroundSize: "cover",
-                        display: "block", backgroundPosition: "center"}} ></a>
-                    </div>\<div>
-                        <a href="#" className='justify-self-start' style={{width: "1265px", height: "667px", backgroundImage: "url(/images/isaiah_looking_up.png)", backgroundSize: "cover",
-                        display: "block", backgroundPosition: "center"}} ></a>
-                    </div>
+                    ))}
                 </div>
-                
+                </div>
 
-
+                <div className="flex justify-center mt-6 gap-3">
+                {images.map((_, index) => (
+                    <button
+                    key={index}
+                    className={`w-[8px] h-[8px] rounded-full ${
+                        currentIndex === index ? "bg-black" : "bg-gray-400"
+                    }`}
+                    onClick={() => setCurrentIndex(index)}
+                    ></button>
+                ))}
+                </div>
             </section>
                 
         </div>
     );
 }
 
-export default VersesList;
