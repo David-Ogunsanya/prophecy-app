@@ -119,26 +119,30 @@ export default function ProphecyCarousel() {
                 </div>
             </section>
             <section className="bg-white" style={{ width: "1728px", height: "800px" }}>
-                <div className="overflow-hidden w-full h-[667px] relative">
+                <div className="overflow-visible w-[1600px] h-[700px] mx-auto relative">
                 <div
-                    className="flex transition-transform duration-1000 ease-in-out"
+                    className="flex transition-transform duration-1000 ease-in-out gap-2"
                     style={{
-                    width: `${images.length * 100}%`,
-                    transform: `translateX(-${currentIndex * (100 / images.length)}%)`,
+                    width: `${images.length * (1230 + 24)}px`,
+                    transform: `translateX(calc(-${currentIndex * (1230 + 24)}px + 220px))`,
                     }}
                 >
                     {images.map((src, index) => (
-                    <div key={index} className="flex-shrink-0 flex justify-center items-center" style={{ width: `${100 / images.length}%` }}>
+                    <div
+                        key={index}
+                        className="flex-shrink-0 flex justify-center items-center relative"
+                        style={{ width: "1230px", height: "700px" }}
+                    >
                         <a
                         href="#"
-                        className=""
                         style={{
-                            width: "1230px",
-                            height: "667px",
+                            width: "100%",
+                            height: "100%",
                             backgroundImage: `url(${src})`,
                             backgroundSize: "cover",
                             backgroundPosition: "center",
                             display: "block",
+                            borderRadius: "12px",
                         }}
                         ></a>
                     </div>
@@ -157,6 +161,8 @@ export default function ProphecyCarousel() {
                     ></button>
                 ))}
                 </div>
+
+                
             </section>
                 
         </div>
