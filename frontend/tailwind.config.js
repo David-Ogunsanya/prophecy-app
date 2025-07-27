@@ -22,6 +22,16 @@ module.exports = {
         graphik: ['Graphik', 'Arial', 'sans-serif'],
         sangbleu: ['SangBleu', 'Georgia', 'serif'],
       },
+      keyframes: {
+          marquee: {
+            '0%': { transform: 'translateX(0%)' },
+            '100%': { transform: 'translateX(-50%)' },
+          },
+        },
+        animation: {
+          marquee: 'marquee 76s linear infinite',
+          'marquee-slow': 'marquee 100s linear infinite',
+        },
     },
   },
   plugins: [

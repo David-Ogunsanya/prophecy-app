@@ -24,7 +24,7 @@ $shooting-time: 3000ms;
     left: 50%;
     top: 50%;
     height: 2px;
-    background: linear-gradient(-45deg, rgba(167, 5, 5), rgba(0, 0, 255, 0));
+    background: linear-gradient(-45deg, rgba(150, 152, 255), rgba(0, 0, 255, 0));
     border-radius: 999px;
     filter: drop-shadow(0 0 6px rgba(16, 4, 99));
     animation:
@@ -38,7 +38,7 @@ $shooting-time: 3000ms;
       top: calc(50% - 1px);
       right: 0;
       height: 2px;
-      background: linear-gradient(-45deg, rgba(0, 0, 255, 0), rgba(231, 0, 0, 1), rgba(0, 0, 255, 0));
+      background: linear-gradient(-45deg, rgba(0, 0, 255, 0), rgba(190, 190, 190), rgba(0, 0, 255, 0));
       border-radius: 100%;
       animation: shining $shooting-time ease-in-out infinite;
     }
