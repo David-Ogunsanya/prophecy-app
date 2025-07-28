@@ -183,7 +183,24 @@ export default function ProphecyCarousel() {
                             </div>
                         </div>
                     
-                    <div className="relative" style={{width: "846px", height: "580px", backgroundColor: "black"}}>    
+                    <div className="relative rounded-lg overflow-hidden" style={{width: "846px", height: "580px", backgroundColor: "black"}}>
+                        <img src="/images/genesis_image.png" alt="" className="w-full h-full object-cover object-center rounded-lg" />
+                        {/* Text Overlay */}
+                        <div className="absolute bottom-[14em] ml-[26em] mt-[2em] text-white px-4 py-2 rounded">
+                            <h1 className="text-7xl ml-[0.8em] tracking-wide text-white font-sans">Genesis</h1>
+                            <p className="text-xl font-sans ml-[2.8em] mt-3 text-white  tracking-wider">
+                                Will replace in the future
+                            </p>
+                            <button className="bg-[#0071e3] text-white font-sans text-lg py-2 px-4 rounded-full border-black ml-[2em] mt-[1em]">
+                                Learn More
+                            </button>
+                            <button
+                                className="text-white border-white font-sans ml-[2em] text-lg py-2 px-4 rounded-full hover:bg-white hover:text-black transition duration-300 mt-3"
+                                style={{ border: "1px solid white" }}
+                                >
+                                Summary
+                            </button>
+                        </div>
                     </div>
                 </div>
             </section>
