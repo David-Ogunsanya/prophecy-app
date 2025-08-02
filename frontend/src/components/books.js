@@ -5,13 +5,44 @@ import './shooting_stars.scss';
 
 export default function ProphecyCarousel() {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const images = [
-    { src: "/images/psalms_image.png", link: "#", caption: "Psalms"},
-    { src: "/images/zechariah_image.png", link: "#", caption: "Zechariah", },
-    { src: "/images/isaiah_looking_up.png", link: "#" },
-    { src: "/images/isaiah_looking_up.png", link: "#" },
-    { src: "/images/isaiah_looking_up.png", link: "#" },
+    const images = [
+    {
+        src: "/images/psalms_image.png",
+        link: "#",
+        caption: "Psalms",
+        captionStyle: "bottom-[3.5em] left-[0.2em]",
+        buttonStyle: "bottom-[20px] left-[0.8em]",
+    },
+    {
+        src: "/images/zechariah_image.png",
+        link: "#",
+        caption: "Zechariah",
+        captionStyle: "-bottom-[0.25em] left-[8em]",
+        buttonStyle: "bottom-[20px] left-[0.8em]",
+    },
+    {
+        src: "/images/malachi_image.png",
+        link: "#",
+        caption: "Malachi",
+        captionStyle: "-bottom-[0.2em] left-[9em]",
+        buttonStyle: "bottom-[20px] left-[0.8em]",
+    },
+        {
+        src: "/images/micah_image.png",
+        link: "#",
+        caption: "Micah",
+        captionStyle: "-bottom-[0.2em] left-[9em]",
+        buttonStyle: "bottom-[20px] left-[0.8em]",
+    },
+        {
+        src: "/images/isaiah_looking_up.png",
+        link: "#",
+        caption: "Isaiah",
+        captionStyle: "top-[40px] right-[80px]",
+        buttonStyle: "top-[150px] right-[80px]",
+    },
 ];
+
     const second_images = [
     { src: "/images/isaiah_looking_up.png", link: "#" },
     { src: "/images/isaiah_looking_up.png", link: "#" },
@@ -205,76 +236,78 @@ export default function ProphecyCarousel() {
                 </div>
             </section>
             <section className="bg-white" style={{ width: "1728px", height: "800px" }}>
-                <div className="overflow-visible w-[1600px] h-[700px] mx-auto relative">
-                   <div
-                        className="flex transition-transform duration-1000 ease-in-out gap-4"
-                        style={{
-                            width: `${images.length * (1230 + 24)}px`,
-                            transform: `translateX(calc(-${currentIndex * (1230 + 24)}px + 230px))`,
-                        }}
-                        >
-                        {images.map((img, index) => {
-                            const isActive = index === currentIndex;
-                            return (
-                            <div
-                                key={index}
-                                className="flex-shrink-0 flex justify-center items-center relative transition-all duration-700"
-                                style={{
-                                width: "1230px",
-                                height: "700px",
-                                filter: isActive ? "blur(0px)" : "blur(5px)",
-                                opacity: isActive ? 1 : 0.7,
-                                transform: isActive ? "scale(1)" : "scale(0.98)",
-                                }}
-                            >
-                                <a
-                                href={isActive ? img.link || "#" : "#"}
-                                onClick={(e) => {
-                                    if (!isActive) {
-                                        e.preventDefault();
-                                        setCurrentIndex(index);
-                                    }
-                                }}
-                                style={{
-                                    width: "100%",
-                                    height: "100%",
-                                    backgroundImage: `url(${img.src})`,
-                                    backgroundSize: "cover",
-                                    backgroundPosition: "center",
-                                    display: "block",
-                                    transition: "filter 0.7s ease, transform 0.7s ease",
-                                    borderRadius: "12px",
-                                }}
-                                >
-                                <div className="absolute bottom-[18em] ml-[21em] w-full bg-transparent bg-opacity-50 text-white text-center p-2">
-                                    <p className="text-[6em] font-serif font-medium tracking-wide">{img.caption || "Default caption"}</p>
-                                    <button
-                                        className="absolute text-black -bottom-[15em] border-white font-sans ml-[7em] text-lg py-2 px-5 rounded-full bg-white hover:bg-slate-100 hover:text-black transition duration-300"
-                                        style={{ border: "1px solid white" }}
-                                    >
-                                Summary
-                            </button>
-                                </div>
+  <div className="overflow-visible w-[1600px] h-[700px] mx-auto relative">
+    <div
+      className="flex transition-transform duration-1000 ease-in-out gap-4"
+      style={{
+        width: `${images.length * (1230 + 24)}px`,
+        transform: `translateX(calc(-${currentIndex * (1230 + 24)}px + 230px))`,
+      }}
+    >
+      {images.map((img, index) => {
+        const isActive = index === currentIndex;
+        return (
+          <div
+            key={index}
+            className="relative flex-shrink-0 flex justify-center items-center transition-all duration-700"
+            style={{
+              width: "1230px",
+              height: "700px",
+              filter: isActive ? "blur(0px)" : "blur(5px)",
+              opacity: isActive ? 1 : 0.7,
+              transform: isActive ? "scale(1)" : "scale(0.98)",
+            }}
+          >
+            <a
+              href={isActive ? img.link || "#" : "#"}
+              onClick={(e) => {
+                if (!isActive) {
+                  e.preventDefault();
+                  setCurrentIndex(index);
+                }
+              }}
+              className="block w-full h-full rounded-[12px]"
+              style={{
+                backgroundImage: `url(${img.src})`,
+                backgroundSize: "cover",
+                backgroundPosition: "center",
+              }}
+            >
+              {/* Text and button overlay */}
+              <div className="absolute w-full h-full">
+                <p
+                  className={`absolute text-[6em] text-white font-sangbleu font-normal tracking-wide ${img.captionStyle}`}
+                >
+                  {img.caption || "Default caption"}
+                </p>
+                <button
+                  className={`absolute text-black border-white font-sans text-lg py-2 px-6 rounded-full bg-white hover:bg-slate-100 hover:text-black transition duration-300 ${img.buttonStyle}`}
+                  style={{ border: "1px solid white" }}
+                >
+                  Summary
+                </button>
+              </div>
+            </a>
+          </div>
+        );
+      })}
+    </div>
+  </div>
 
-                                </a>
-                            </div>
-                            );
-                        })}
-                    </div>
-                </div>
+  {/* Dot indicators */}
+  <div className="flex justify-center mt-4 gap-3">
+    {images.map((_, index) => (
+      <button
+        key={index}
+        className={`w-[8px] h-[8px] rounded-full ${
+          currentIndex === index ? "bg-black" : "bg-gray-400"
+        }`}
+        onClick={() => setCurrentIndex(index)}
+      ></button>
+    ))}
+  </div>
+</section>
 
-                <div className="flex justify-center mt-4 gap-3">
-                {images.map((_, index) => (
-                    <button
-                    key={index}
-                    className={`w-[8px] h-[8px] rounded-full ${
-                        currentIndex === index ? "bg-black" : "bg-gray-400"
-                    }`}
-                    onClick={() => setCurrentIndex(index)}
-                    ></button>
-                ))}
-                </div>
-            </section>
             <section className="bg-white" style={{ width: "2560px", height: "292px" }}>
                 <div className="w-full overflow-hidden -mt-[36px]">
                     <div className="flex w-max animate-marquee gap-4 px-6 group-hover:animate-marquee-slow">
