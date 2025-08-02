@@ -6,8 +6,8 @@ import './shooting_stars.scss';
 export default function ProphecyCarousel() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const images = [
-    { src: "/images/isaiah_looking_up.png", link: "#"},
-    { src: "/images/isaiah_looking_up.png", link: "#"  },
+    { src: "/images/psalms_image.png", link: "#", caption: "Psalms"},
+    { src: "/images/zechariah_image.png", link: "#", caption: "Zechariah", },
     { src: "/images/isaiah_looking_up.png", link: "#" },
     { src: "/images/isaiah_looking_up.png", link: "#" },
     { src: "/images/isaiah_looking_up.png", link: "#" },
@@ -113,8 +113,8 @@ export default function ProphecyCarousel() {
                                 Learn More
                             </button>
                             <button
-                                className="text-[#0071e3] border-blue-700 font-sans text-lg py-2 px-4 rounded-full mt-3 ml-[2.6em]"
-                                style={{ border: "1px solid #0071e3" }}
+                                className="text-white font-sans text-lg py-2 px-4 rounded-full mt-3 ml-[2.6em] hover:bg-white hover:text-black transition duration-300 "
+                                style={{ border: "1px solid white" }}
                                 >
                                 Summary
                             </button>
@@ -126,8 +126,8 @@ export default function ProphecyCarousel() {
                     <div className="relative rounded-lg overflow-hidden" style={{width: "846px", height: "580px"}}>
                         <img src="/images/jeremiah_image.png" alt="" className="w-full h-full object-cover object-center rounded-lg" />
                         {/* Text Overlay */}
-                        <div className="absolute bottom-[22em] ml-[26em] mt-[2em] text-white px-4 py-2 rounded">
-                            <h1 className="text-7xl ml-[0.8em] tracking-wide text-white font-sans">Jeremiah</h1>
+                        <div className="absolute bottom-[2em] ml-[0em] mt-[2em] text-white px-4 py-2 rounded">
+                            <h1 className="text-7xl ml-[0.25em] tracking-wide text-white font-sans">Jeremiah</h1>
                             <p className="text-xl font-sans ml-[2.8em] mt-3 text-white  tracking-wider">
                                 Will replace in the future
                             </p>
@@ -145,8 +145,8 @@ export default function ProphecyCarousel() {
                     <div className="relative rounded-lg overflow-hidden" style={{width: "846px", height: "580px", backgroundColor: "white"}}>
                         <img src="/images/joel_image.png" alt="" className="w-full h-full object-cover object-center rounded-lg" />
                         {/* Text Overlay */}
-                        <div className="absolute bottom-[22em] ml-[26em] mt-[2em] text-white px-4 py-2 rounded">
-                            <h1 className="text-7xl ml-[0.8em] tracking-wide text-white font-sans">Joel</h1>
+                        <div className="absolute bottom-[23em] ml-[30em] mt-[2em] text-white px-4 py-2 rounded">
+                            <h1 className="text-7xl ml-[1.45em] tracking-wide text-white font-sans">Joel</h1>
                             <p className="text-xl font-sans ml-[2.8em] mt-3 text-white  tracking-wider">
                                 Will replace in the future
                             </p>
@@ -166,9 +166,9 @@ export default function ProphecyCarousel() {
                         <div className="relative rounded-lg overflow-hidden" style={{width: "846px", height: "580px", backgroundColor: "white"}}>
                             <img src="/images/matthew_prophecy.png" alt="" className="w-full h-full object-cover object-center rounded-lg" />
                             {/* Text Overlay */}
-                            <div className="absolute bottom-[14em] ml-[26em] mt-[2em] text-white px-4 py-2 rounded">
-                                <h1 className="text-7xl ml-[0.8em] tracking-wide text-white font-sans">Matthew</h1>
-                                <p className="text-xl font-sans ml-[2.8em] mt-3 text-white  tracking-wider">
+                            <div className="absolute bottom-[12em] -ml-[2em] mb-[0em] text-white px-4 py-2 rounded">
+                                <h1 className="text-7xl ml-[0.55em] tracking-wide text-white font-sans">Matthew</h1>
+                                <p className="text-xl font-sans ml-[2.2em] mt-3 text-white  tracking-wider">
                                     Will replace in the future
                                 </p>
                                 <button className="bg-[#0071e3] text-white font-sans text-lg py-2 px-4 rounded-full border-black ml-[2em] mt-[1em]">
@@ -186,12 +186,12 @@ export default function ProphecyCarousel() {
                     <div className="relative rounded-lg overflow-hidden" style={{width: "846px", height: "580px", backgroundColor: "black"}}>
                         <img src="/images/genesis_image.png" alt="" className="w-full h-full object-cover object-center rounded-lg" />
                         {/* Text Overlay */}
-                        <div className="absolute bottom-[14em] ml-[26em] mt-[2em] text-white px-4 py-2 rounded">
+                        <div className="absolute bottom-[2em] ml-[26em] mt-[2em] text-white px-4 py-2 rounded">
                             <h1 className="text-7xl ml-[0.8em] tracking-wide text-white font-sans">Genesis</h1>
-                            <p className="text-xl font-sans ml-[2.8em] mt-3 text-white  tracking-wider">
+                            <p className="text-xl font-sans ml-[3.6em] mt-3 text-white  tracking-wider">
                                 Will replace in the future
                             </p>
-                            <button className="bg-[#0071e3] text-white font-sans text-lg py-2 px-4 rounded-full border-black ml-[2em] mt-[1em]">
+                            <button className="bg-[#0071e3] text-white font-sans text-lg py-2 px-4 rounded-full border-black ml-[2.5em] mt-[1em]">
                                 Learn More
                             </button>
                             <button
@@ -243,8 +243,20 @@ export default function ProphecyCarousel() {
                                     backgroundPosition: "center",
                                     display: "block",
                                     transition: "filter 0.7s ease, transform 0.7s ease",
+                                    borderRadius: "12px",
                                 }}
-                                ></a>
+                                >
+                                <div className="absolute bottom-[18em] ml-[21em] w-full bg-transparent bg-opacity-50 text-white text-center p-2">
+                                    <p className="text-[6em] font-serif font-medium tracking-wide">{img.caption || "Default caption"}</p>
+                                    <button
+                                        className="absolute text-black -bottom-[15em] border-white font-sans ml-[7em] text-lg py-2 px-5 rounded-full bg-white hover:bg-slate-100 hover:text-black transition duration-300"
+                                        style={{ border: "1px solid white" }}
+                                    >
+                                Summary
+                            </button>
+                                </div>
+
+                                </a>
                             </div>
                             );
                         })}
@@ -279,7 +291,9 @@ export default function ProphecyCarousel() {
                                 backgroundSize: "cover",
                                 backgroundPosition: "center",
                             }}
-                            />
+                           />
+                            {/* Text Overlay */}
+                        
                         </div>
                         ))}
                     </div>
