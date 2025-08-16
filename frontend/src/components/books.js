@@ -60,51 +60,70 @@ export default function ProphecyCarousel() {
         <div className="bg-white max-w-full min-h-screen overflow-hidden">
             <section style={{width: "1728px", height: "1180px", backgroundColor: "white"}}>
                 <div className="shooting-star-container inset-y-2 shadow-lg" style={{ width: "1728px", height: "580px", position: "relative", overflow: "hidden" }}>
-                    <div className="night">
-                        {[...Array(20)].map((_, i) => {
-                        const top = Math.random() * 420;
-                        const left = Math.random() * 1728;
-                        const delay = Math.random() * 6000;
-                        return (
-                            <div
-                            key={i}
-                            className="shooting_star"
-                            style={{
-                                top: `${top}px`,
-                                left: `${left}px`,
-                                animationDelay: `${delay}ms`,
-                                position: "absolute",
-                                rotate: `30deg`,
-                                borderwidth: "2px",
-                                
-                            }}
-                            />
-                        );
-                        })}
-                    </div>
-
-                    <div className="grid grid-cols-2 pt-3 pb-10 relative z-10" style={{ width: "1728px", height: "580px" }}>
-                        <div className="flex justify-center" style={{height: "540px"}}>
-                            <img src="/images/john_looking_up.png" alt="" className="mr-[23rem] mt-[1.5rem]" style={{ height: "490px"}}/>
+                    <video
+                        src="/images/revelation_1.mp4"
+                        className="absolute top-0 left-0 md:w-32 lg:w-48 w-full h-full object-cover"
+                        style={{ width: "100%", height: "100%", objectPosition: "center 90%" }}
+                        autoPlay
+                        loop
+                        muted
+                        playsInline
+                    />
+                        <div className="absolute top-[9em] right-[0em] flex flex-col justify-center items-center z-10">
+                            <h1 className="text-white text-6xl font-sans font-semibold drop-shadow-lg mb-4">Revelation</h1>
+                            <p className="text-white text-xl mr-10 font-graphik drop-shadow-md mb-3 max-w-xl text-center">
+                            The Book of Revelation filled with prophecies. Visions stories about a particular king
+                            </p>
+                            <div className="flex flex-row gap-2">
+                            <button className="text-white font-graphik text-2xl py-2 px-4 transition duration-500 mr-4 flex items-center gap-2 hover:-translate-y-2">
+                                Learn More
+                                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 17L17 7M7 7h10v10" />
+                                </svg>
+                            </button>
+                            <button className="bg-transparent text-white font-sans text-2xl py-2 px-4 flex items-center gap-2 hover:-translate-y-2 duration-500">
+                                Summary
+                                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 17L17 7M7 7h10v10" />
+                                </svg>
+                            </button>
                         </div>
-                        <div className="font-sans text-8xl font-normal" style={{ height: "540px" }}>
-                            <div className="mt-[12rem] ml-[15rem] text-slate-100">
-                                <h1 className="ml-20">Revelation</h1>
-                            </div>
                         </div>
-
-                    </div>
+                    
                 </div>
-                <div className="inset-y-3 mt-4" style={{width: "1728px", height: "580px", background: "linear-gradient(to right, #2f3e49, #1c252b, #121619, #0e1114)"}}>
-                    <div className="grid grid-cols-2 pt-3 pb-10" style={{width: "1728px", height: "580px"}}>
-                        <div className=" font-sans text-8xl font-normal" style={{height: "540px"}}>
-                            <h1 className="mt-40 ml-20 text-slate-100">Daniel</h1>
-                            <p className="text-xl ml-20 font-graphik mt-3 text-slate-100">The Book of Daniel filled with prophecies. Visions stories about a particular king.</p>
-                            <button className="bg-gray-600 text-white font-sans text-lg py-2 px-4 rounded-full hover:bg-slate-600 transition duration-300 mt-3 ml-20">Learn More</button>
-                            <button className="bg-transparent box-border-white text-white font-sans text-lg py-2 px-4 rounded-full hover:bg-slate-600 transition duration-300 mt-3 ml-20">Summary</button>
-                        </div>
-                        <div className="flex justify-center ml-20 -mt-4" style={{height: "540px"}}>
-                            <img src="/images/daniel_image_no_bg.png" alt="" className="" style={{ height: "650px"}}/>
+                <div className="inset-y-3 mt-3" style={{width: "1728px", height: "580px"}}>
+                    <div className="grid " style={{width: "1728px", height: "580px"}}>
+                        
+                        <div className="flex justify-center relative" style={{ height: "580px" }}>
+                            <video
+                                src="/images/daniel_1.mp4"
+                                className="absolute top-0 left-0 md:w-32 lg:w-48 w-full h-full object-cover"
+                                style={{ width: "100%", height: "100%", objectPosition: "center 30%" }}
+                                autoPlay
+                                loop
+                                muted
+                                playsInline
+                            />
+                                <div className="absolute top-[9em] right-[0em] flex flex-col justify-center items-center z-10">
+                                    <h1 className="text-white text-6xl font-graphik font-semibold drop-shadow-lg mb-4">Daniel</h1>
+                                    <p className="text-white text-xl font-graphik drop-shadow-md mb-8 max-w-xl text-center">
+                                    The Book of Daniel filled with prophecies. Visions stories about a particular king
+                                    </p>
+                                    <div className="flex flex-row gap-2">
+                                    <button className="text-white font-graphik text-2xl py-2 px-4 transition duration-500 hover:-translate-y-2 mr-4 flex items-center gap-2">
+                                        Learn More
+                                        <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 17L17 7M7 7h10v10" />
+                                        </svg>
+                                    </button>
+                                    <button className="bg-transparent text-white font-sans text-2xl py-2 px-4 duration-500 hover:-translate-y-2 flex items-center gap-2">
+                                        Summary
+                                        <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 17L17 7M7 7h10v10" />
+                                        </svg>
+                                    </button>
+                                    </div>
+                                </div>
                         </div>
                     </div>
                 </div>

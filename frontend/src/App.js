@@ -14,11 +14,13 @@ import RegisterForm from './components/RegisterForm';
 import Books from './components/books';
 import VerseForm from './components/VerseForm';
 import ProphecyTool from './pages/timeline_history';
+import ScrollToTop from './ScrollToTop';
 
 
 function Layout({ children }) {
   const location = useLocation();
   const hideNav = location.pathname === '/Prophecy Tool';
+  const isBooksPage = location.pathname === '/verses';
   const [hasScrolled, setHasScrolled] = useState(false);
   const [mobileNavOpen, setMobileNavOpen] = useState(false);
 
@@ -37,8 +39,9 @@ function Layout({ children }) {
         <header
           style={{ backgroundColor: '#ffffff' }}
           className={`sticky top-0 z-50 text-black font-sans text-lg p-4 tracking-wide transition-shadow duration-300 ${
-            hasScrolled ? 'shadow-md' : ''
-          }`}
+            hasScrolled ? 'shadow-md' : ''}
+            ${isBooksPage ? 'py-1 h-14':'p-2'}
+            `}
         >
           <div className="navbar-container flex justify-between items-center">
             {/* Left: Brand */}
@@ -129,7 +132,7 @@ function Layout({ children }) {
       )}
 
       {/* Main Content */}
-      <main className="flex-1">{children}</main>
+      <main className="flex">{children}</main>
 
       {!hideNav && (
         <footer className="bg-gray-800 text-white text-center p-4">
@@ -143,6 +146,7 @@ function Layout({ children }) {
 function App() {
   return (
     <Router>
+      <ScrollToTop />
       <Routes>
         <Route path="/" element={<Layout><HomePage /></Layout>} />
         <Route path="/login" element={<Layout><LoginForm /></Layout>} />
