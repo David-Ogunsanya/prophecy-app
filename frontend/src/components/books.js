@@ -1,49 +1,47 @@
 import React, { useEffect, useState } from 'react';
-import './shooting_stars.scss';
-
-
 
 export default function ProphecyCarousel() {
   const [currentIndex, setCurrentIndex] = useState(0);
-    const images = [
+  
+  const images = [
     {
-        src: "/images/psalms_image.png",
-        link: "#",
-        caption: "Psalms",
-        captionStyle: "bottom-[3.5em] left-[0.2em]",
-        buttonStyle: "bottom-[20px] left-[0.8em]",
-    },
-    {
-        src: "/images/zechariah_image.png",
-        link: "#",
-        caption: "Zechariah",
-        captionStyle: "-bottom-[0.25em] left-[8em]",
-        buttonStyle: "bottom-[20px] left-[0.8em]",
+      src: "/images/psalms_image.png",
+      link: "#",
+      caption: "Psalms",
+      captionStyle: "bottom-8 left-4 md:bottom-12 md:left-8",
+      buttonStyle: "bottom-4 left-4 md:bottom-8 md:left-8",
     },
     {
-        src: "/images/malachi_image.png",
-        link: "#",
-        caption: "Malachi",
-        captionStyle: "-bottom-[0.2em] left-[9em]",
-        buttonStyle: "bottom-[20px] left-[0.8em]",
+      src: "/images/zechariah_image.png",
+      link: "#",
+      caption: "Zechariah",
+      captionStyle: "bottom-8 left-4 md:bottom-12 md:left-8",
+      buttonStyle: "bottom-4 left-4 md:bottom-8 md:left-8",
     },
-        {
-        src: "/images/micah_image.png",
-        link: "#",
-        caption: "Micah",
-        captionStyle: "-bottom-[0.2em] left-[9em]",
-        buttonStyle: "bottom-[20px] left-[0.8em]",
+    {
+      src: "/images/malachi_image.png",
+      link: "#",
+      caption: "Malachi",
+      captionStyle: "bottom-8 left-4 md:bottom-12 md:left-8",
+      buttonStyle: "bottom-4 left-4 md:bottom-8 md:left-8",
     },
-        {
-        src: "/images/isaiah_looking_up.png",
-        link: "#",
-        caption: "Isaiah",
-        captionStyle: "top-[40px] right-[80px]",
-        buttonStyle: "top-[150px] right-[80px]",
+    {
+      src: "/images/micah_image.png",
+      link: "#",
+      caption: "Micah",
+      captionStyle: "bottom-8 left-4 md:bottom-12 md:left-8",
+      buttonStyle: "bottom-4 left-4 md:bottom-8 md:left-8",
     },
-];
+    {
+      src: "/images/isaiah_looking_up.png",
+      link: "#",
+      caption: "Isaiah",
+      captionStyle: "top-8 right-4 md:top-12 md:right-12",
+      buttonStyle: "top-20 right-4 md:top-32 md:right-12",
+    },
+  ];
 
-    const second_images = [
+  const second_images = [
     { src: "/images/isaiah_looking_up.png", link: "#" },
     { src: "/images/isaiah_looking_up.png", link: "#" },
     { src: "/images/isaiah_looking_up.png", link: "#" },
@@ -53,216 +51,260 @@ export default function ProphecyCarousel() {
     { src: "/images/isaiah_looking_up.png", link: "#" },
     { src: "/images/isaiah_looking_up.png", link: "#" },
     { src: "/images/isaiah_looking_up.png", link: "#" },
+  ];
 
-];
+  return (
+    <div className="bg-white w-full min-h-screen overflow-hidden">
+      {/* Hero Videos Section */}
+      <section className="w-full">
+        {/* Revelation Video */}
+        <div className="relative w-full h-[50vh] md:h-[70vh] lg:h-[580px]">
+          <video
+            src="/images/revelation_1.mp4"
+            className="absolute inset-0 w-full h-full object-cover"
+            style={{ objectPosition: "center 90%" }}
+            autoPlay
+            loop
+            muted
+            playsInline
+          />
+          <div className="absolute inset-0 flex items-center justify-center md:justify-end px-6 md:px-12 lg:px-24">
+            <div className="text-center md:text-left max-w-xl">
+              <h1 className="text-white text-4xl md:text-5xl lg:text-6xl font-semibold drop-shadow-lg mb-4">
+                Revelation
+              </h1>
+              <p className="text-white text-base md:text-lg lg:text-xl drop-shadow-md mb-6">
+                The Book of Revelation filled with prophecies. Visions stories about a particular king
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
+                <button className="text-white text-lg md:text-xl lg:text-2xl py-2 px-4 transition duration-500 flex items-center justify-center gap-2 hover:-translate-y-1">
+                  Learn More
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 md:h-5 md:w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 17L17 7M7 7h10v10" />
+                  </svg>
+                </button>
+                <button className="text-white text-lg md:text-xl lg:text-2xl py-2 px-4 flex items-center justify-center gap-2 hover:-translate-y-1 duration-500">
+                  Summary
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 md:h-5 md:w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 17L17 7M7 7h10v10" />
+                  </svg>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
 
-    return (
-        <div className="bg-white max-w-full min-h-screen overflow-hidden">
-            <section style={{width: "1728px", height: "1180px", backgroundColor: "white"}}>
-                <div className="shooting-star-container inset-y-2 shadow-lg" style={{ width: "1728px", height: "580px", position: "relative", overflow: "hidden" }}>
-                    <video
-                        src="/images/revelation_1.mp4"
-                        className="absolute top-0 left-0 md:w-32 lg:w-48 w-full h-full object-cover"
-                        style={{ width: "100%", height: "100%", objectPosition: "center 90%" }}
-                        autoPlay
-                        loop
-                        muted
-                        playsInline
-                    />
-                        <div className="absolute top-[9em] right-[0em] flex flex-col justify-center items-center z-10">
-                            <h1 className="text-white text-6xl font-sans font-semibold drop-shadow-lg mb-4">Revelation</h1>
-                            <p className="text-white text-xl mr-10 font-graphik drop-shadow-md mb-3 max-w-xl text-center">
-                            The Book of Revelation filled with prophecies. Visions stories about a particular king
-                            </p>
-                            <div className="flex flex-row gap-2">
-                            <button className="text-white font-graphik text-2xl py-2 px-4 transition duration-500 mr-4 flex items-center gap-2 hover:-translate-y-2">
-                                Learn More
-                                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 17L17 7M7 7h10v10" />
-                                </svg>
-                            </button>
-                            <button className="bg-transparent text-white font-sans text-2xl py-2 px-4 flex items-center gap-2 hover:-translate-y-2 duration-500">
-                                Summary
-                                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 17L17 7M7 7h10v10" />
-                                </svg>
-                            </button>
-                        </div>
-                        </div>
-                    
-                </div>
-                <div className="inset-y-3 mt-3" style={{width: "1728px", height: "580px"}}>
-                    <div className="grid " style={{width: "1728px", height: "580px"}}>
-                        
-                        <div className="flex justify-center relative" style={{ height: "580px" }}>
-                            <video
-                                src="/images/daniel_1.mp4"
-                                className="absolute top-0 left-0 md:w-32 lg:w-48 w-full h-full object-cover"
-                                style={{ width: "100%", height: "100%", objectPosition: "center 30%" }}
-                                autoPlay
-                                loop
-                                muted
-                                playsInline
-                            />
-                                <div className="absolute top-[9em] right-[0em] flex flex-col justify-center items-center z-10">
-                                    <h1 className="text-white text-6xl font-graphik font-semibold drop-shadow-lg mb-4">Daniel</h1>
-                                    <p className="text-white text-xl font-graphik drop-shadow-md mb-8 max-w-xl text-center">
-                                    The Book of Daniel filled with prophecies. Visions stories about a particular king
-                                    </p>
-                                    <div className="flex flex-row gap-2">
-                                    <button className="text-white font-graphik text-2xl py-2 px-4 transition duration-500 hover:-translate-y-2 mr-4 flex items-center gap-2">
-                                        Learn More
-                                        <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 17L17 7M7 7h10v10" />
-                                        </svg>
-                                    </button>
-                                    <button className="bg-transparent text-white font-sans text-2xl py-2 px-4 duration-500 hover:-translate-y-2 flex items-center gap-2">
-                                        Summary
-                                        <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 17L17 7M7 7h10v10" />
-                                        </svg>
-                                    </button>
-                                    </div>
-                                </div>
-                        </div>
-                    </div>
-                </div>
+        {/* Daniel Video */}
+        <div className="relative w-full h-[50vh] md:h-[70vh] lg:h-[580px] mt-1">
+          <video
+            src="/images/daniel_1.mp4"
+            className="absolute inset-0 w-full h-full object-cover"
+            style={{ objectPosition: "center 30%" }}
+            autoPlay
+            loop
+            muted
+            playsInline
+          />
+          <div className="absolute inset-0 flex items-center justify-center md:justify-end px-6 md:px-12 lg:px-0">
+            <div className="text-center md:text-left max-w-xl">
+              <h1 className="text-white text-4xl md:text-5xl lg:text-6xl font-semibold drop-shadow-lg mb-4">
+                Daniel
+              </h1>
+              <p className="text-white text-base md:text-lg lg:text-xl drop-shadow-md mb-6">
+                The Book of Daniel filled with prophecies. Visions stories about a particular king
+              </p>
+              <div className="flex flex-row gap-4 justify-center md:justify-start">
+                <button className="text-white text-lg md:text-xl lg:text-2xl transition duration-500 hover:-translate-y-1 flex items-center justify-center gap-2">
+                  Learn More
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 md:h-5 md:w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 17L17 7M7 7h10v10" />
+                  </svg>
+                </button>
+                <button className="text-white text-lg md:text-xl lg:text-2xl py-2 px-4 duration-500 hover:-translate-y-1 flex items-center justify-center gap-2">
+                  Summary
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 md:h-5 md:w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 17L17 7M7 7h10v10" />
+                  </svg>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
 
-            </section>
-            <section className="bg-white" style={{width: "1728px", height: "1780px"}}>
-                <div className="grid grid-cols-2 ml-3 mt-2">
-                    <div className="relative bg-[#f5f5f7]" style={{width: "846px", height: "590px"}}>
-                        <img src="/images/ezekiel_image.png" alt="" className="w-full h-full object-cover object-center rounded-lg" />
-                        {/* Text Overlay */}
-                        <div className="absolute bottom-[14em] mr-[16em] mt-[2em] text-white px-4 py-2 rounded">
-                            <h1 className="text-7xl ml-[0.8em] tracking-wide text-white font-sans">Ezekiel</h1>
-                            <p className="text-xl font-sans ml-[2.8em] mt-3 text-white  tracking-wider">
-                                Will replace in the future
-                            </p>
-                            <button className="bg-[#0071e3] text-white font-sans text-lg py-2 px-4 rounded-full border-black ml-[2em] mt-[1em]">
-                                Learn More
-                            </button>
-                            <button
-                                className="text-white border-white font-sans ml-[2em] text-lg py-2 px-4 rounded-full hover:bg-white hover:text-black transition duration-300 mt-3"
-                                style={{ border: "1px solid white" }}
-                                >
-                                Summary
-                            </button>
-                        </div>
-                    </div>
-                    
-                    <div className="relative rounded-lg overflow-hidden" style={{ width: "846px", height: "590px", backgroundColor: "rgb(1, 1, 12)" }}>
-                        <img src="/images/isaiah_looking_up.png" alt="" className="w-full h-full object-center object-cover rounded-lg" />                  
-                        {/* Text Overlay */}
-                        <div className="absolute bottom-[14em] left-0 text-white px-4 py-2">
-                            <h1 className="text-7xl ml-[6.8em] tracking-wide text-slate-100 font-sans">Isaiah</h1>
-                            <p className="text-xl font-sans text-slate-100 w-[26em] ml-[20em] mt-[1em] tracking-wider">
-                                Visions stories about different future events
-                            </p>
-                            <button className="bg-[#0071e3] text-white font-sans text-lg py-2 px-4 rounded-full border-black ml-[25em] mt-[2em]">
-                                Learn More
-                            </button>
-                            <button
-                                className="text-white font-sans text-lg py-2 px-4 rounded-full mt-3 ml-[2.6em] hover:bg-white hover:text-black transition duration-300 "
-                                style={{ border: "1px solid white" }}
-                                >
-                                Summary
-                            </button>
-                        </div>
-                    </div>
+        {/* Isaiah Video */}
+        <div className="relative w-full h-[50vh] md:h-[70vh] lg:h-[580px] mt-1">
+          <video
+            src="/images/isaiah_1.mp4"
+            className="absolute inset-0 w-full h-full object-cover"
+            style={{ objectPosition: "center 0%" }}
+            autoPlay
+            loop
+            muted
+            playsInline
+          />
+          <div className="absolute inset-0 flex items-center justify-center md:justify-start px-6 md:px-12 lg:px-24">
+            <div className="text-center md:text-left max-w-xl">
+              <h1 className="text-white text-4xl md:text-5xl lg:text-6xl font-semibold drop-shadow-lg mb-4">
+                Isaiah
+              </h1>
+              <p className="text-white text-base md:text-lg lg:text-xl drop-shadow-md mb-6">
+                The Book of Daniel filled with prophecies. Visions stories about a particular king
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
+                <button className="text-white text-lg md:text-xl lg:text-2xl py-2 px-4 transition duration-500 hover:-translate-y-1 flex items-center justify-center gap-2">
+                  Learn More
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 md:h-5 md:w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 17L17 7M7 7h10v10" />
+                  </svg>
+                </button>
+                <button className="text-white text-lg md:text-xl lg:text-2xl py-2 px-4 duration-500 hover:-translate-y-1 flex items-center justify-center gap-2">
+                  Summary
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 md:h-5 md:w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 17L17 7M7 7h10v10" />
+                  </svg>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
 
-                </div>
-                <div className="grid grid-cols-2 ml-3 mt-2">
-                    <div className="relative rounded-lg overflow-hidden" style={{width: "846px", height: "580px"}}>
-                        <img src="/images/jeremiah_image.png" alt="" className="w-full h-full object-cover object-center rounded-lg" />
-                        {/* Text Overlay */}
-                        <div className="absolute bottom-[2em] ml-[0em] mt-[2em] text-white px-4 py-2 rounded">
-                            <h1 className="text-7xl ml-[0.25em] tracking-wide text-white font-sans">Jeremiah</h1>
-                            <p className="text-xl font-sans ml-[2.8em] mt-3 text-white  tracking-wider">
-                                Will replace in the future
-                            </p>
-                            <button className="bg-[#0071e3] text-white font-sans text-lg py-2 px-4 rounded-full border-black ml-[2em] mt-[1em]">
-                                Learn More
-                            </button>
-                            <button
-                                className="text-white border-white font-sans ml-[2em] text-lg py-2 px-4 rounded-full hover:bg-white hover:text-black transition duration-300 mt-3"
-                                style={{ border: "1px solid white" }}
-                                >
-                                Summary
-                            </button>
-                        </div>
-                    </div>
-                    <div className="relative rounded-lg overflow-hidden" style={{width: "846px", height: "580px", backgroundColor: "white"}}>
-                        <img src="/images/joel_image.png" alt="" className="w-full h-full object-cover object-center rounded-lg" />
-                        {/* Text Overlay */}
-                        <div className="absolute bottom-[23em] ml-[30em] mt-[2em] text-white px-4 py-2 rounded">
-                            <h1 className="text-7xl ml-[1.45em] tracking-wide text-white font-sans">Joel</h1>
-                            <p className="text-xl font-sans ml-[2.8em] mt-3 text-white  tracking-wider">
-                                Will replace in the future
-                            </p>
-                            <button className="bg-[#0071e3] text-white font-sans text-lg py-2 px-4 rounded-full border-black ml-[2em] mt-[1em]">
-                                Learn More
-                            </button>
-                            <button
-                                className="text-white border-white font-sans ml-[2em] text-lg py-2 px-4 rounded-full hover:bg-white hover:text-black transition duration-300 mt-3"
-                                style={{ border: "1px solid white" }}
-                                >
-                                Summary
-                            </button>
-                        </div>
-                    </div>
-                </div>
-                <div className="grid grid-cols-2 ml-3 mt-2">
-                        <div className="relative rounded-lg overflow-hidden" style={{width: "846px", height: "580px", backgroundColor: "white"}}>
-                            <img src="/images/matthew_prophecy.png" alt="" className="w-full h-full object-cover object-center rounded-lg" />
-                            {/* Text Overlay */}
-                            <div className="absolute bottom-[12em] -ml-[2em] mb-[0em] text-white px-4 py-2 rounded">
-                                <h1 className="text-7xl ml-[0.55em] tracking-wide text-white font-sans">Matthew</h1>
-                                <p className="text-xl font-sans ml-[2.2em] mt-3 text-white  tracking-wider">
-                                    Will replace in the future
-                                </p>
-                                <button className="bg-[#0071e3] text-white font-sans text-lg py-2 px-4 rounded-full border-black ml-[2em] mt-[1em]">
-                                    Learn More
-                                </button>
-                                <button
-                                    className="text-white border-white font-sans ml-[2em] text-lg py-2 px-4 rounded-full hover:bg-white hover:text-black transition duration-300 mt-3"
-                                    style={{ border: "1px solid white" }}
-                                    >
-                                    Summary
-                                </button>
-                            </div>
-                        </div>
-                    
-                    <div className="relative rounded-lg overflow-hidden" style={{width: "846px", height: "580px", backgroundColor: "black"}}>
-                        <img src="/images/genesis_image.png" alt="" className="w-full h-full object-cover object-center rounded-lg" />
-                        {/* Text Overlay */}
-                        <div className="absolute bottom-[2em] ml-[26em] mt-[2em] text-white px-4 py-2 rounded">
-                            <h1 className="text-7xl ml-[0.8em] tracking-wide text-white font-sans">Genesis</h1>
-                            <p className="text-xl font-sans ml-[3.6em] mt-3 text-white  tracking-wider">
-                                Will replace in the future
-                            </p>
-                            <button className="bg-[#0071e3] text-white font-sans text-lg py-2 px-4 rounded-full border-black ml-[2.5em] mt-[1em]">
-                                Learn More
-                            </button>
-                            <button
-                                className="text-white border-white font-sans ml-[2em] text-lg py-2 px-4 rounded-full hover:bg-white hover:text-black transition duration-300 mt-3"
-                                style={{ border: "1px solid white" }}
-                                >
-                                Summary
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </section>
-            <section className="bg-white" style={{ width: "1728px", height: "800px" }}>
-  <div className="overflow-visible w-[1600px] h-[700px] mx-auto relative">
-    <div
-      className="flex transition-transform duration-1000 ease-in-out gap-4"
-      style={{
-        width: `${images.length * (1230 + 24)}px`,
-        transform: `translateX(calc(-${currentIndex * (1230 + 24)}px + 230px))`,
-      }}
-    >
+      {/* Grid Section */}
+      <section className="w-full bg-white py-4">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-2 px-2 md:px-4">
+          {/* Ezekiel */}
+          <div className="relative h-[50vh] md:h-[70vh] lg:h-[590px] bg-gray-100 rounded-lg overflow-hidden">
+            <img src="/images/ezekiel_image.png" alt="Ezekiel" className="w-full h-full object-cover" />
+            <div className="absolute inset-0 flex flex-col justify-end p-6 md:p-8 lg:p-12">
+              <h1 className="text-4xl md:text-5xl lg:text-7xl text-white font-bold mb-3">Ezekiel</h1>
+              <p className="text-base md:text-lg lg:text-xl text-white mb-4 max-w-md">
+                Will replace in the future
+              </p>
+              <div className="flex flex-col sm:flex-row gap-3">
+                <button className="bg-blue-500 text-white text-base md:text-lg py-2 px-6 rounded-full hover:bg-blue-600 transition">
+                  Learn More
+                </button>
+                <button className="text-white text-base md:text-lg py-2 px-6 rounded-full border border-white hover:bg-white hover:text-black transition">
+                  Summary
+                </button>
+              </div>
+            </div>
+          </div>
+
+          {/* Isaiah */}
+          <div className="relative h-[50vh] md:h-[70vh] lg:h-[590px] bg-gray-900 rounded-lg overflow-hidden">
+            <img src="/images/isaiah_looking_up.png" alt="Isaiah" className="w-full h-full object-cover" />
+            <div className="absolute inset-0 flex flex-col justify-end items-end p-6 md:p-8 lg:p-12">
+              <h1 className="text-4xl md:text-5xl lg:text-7xl text-white font-bold mb-3">Isaiah</h1>
+              <p className="text-base md:text-lg lg:text-xl text-white mb-4 max-w-md text-right">
+                Visions stories about different future events
+              </p>
+              <div className="flex flex-col sm:flex-row gap-3">
+                <button className="bg-blue-500 text-white text-base md:text-lg py-2 px-6 rounded-full hover:bg-blue-600 transition">
+                  Learn More
+                </button>
+                <button className="text-white text-base md:text-lg py-2 px-6 rounded-full border border-white hover:bg-white hover:text-black transition">
+                  Summary
+                </button>
+              </div>
+            </div>
+          </div>
+
+          {/* Jeremiah */}
+          <div className="relative h-[50vh] md:h-[70vh] lg:h-[580px] rounded-lg overflow-hidden">
+            <video 
+              src="/images/jeremiah_1.mp4" 
+              className="w-full h-full object-cover"
+              autoPlay
+              loop
+              muted
+              playsInline
+            />
+            <div className="absolute inset-0 flex flex-col justify-end p-6 md:p-8 lg:p-12">
+              <h1 className="text-4xl md:text-5xl lg:text-7xl text-white font-bold mb-3">Jeremiah</h1>
+              <p className="text-base md:text-lg lg:text-xl text-white mb-4 max-w-md">
+                Will replace in the future
+              </p>
+              <div className="flex flex-col sm:flex-row gap-3">
+                <button className="bg-blue-500 text-white text-base md:text-lg py-2 px-6 rounded-full hover:bg-blue-600 transition">
+                  Learn More
+                </button>
+                <button className="text-white text-base md:text-lg py-2 px-6 rounded-full border border-white hover:bg-white hover:text-black transition">
+                  Summary
+                </button>
+              </div>
+            </div>
+          </div>
+
+          {/* Joel */}
+          <div className="relative h-[50vh] md:h-[70vh] lg:h-[580px] bg-white rounded-lg overflow-hidden">
+            <img src="/images/joel_image.png" alt="Joel" className="w-full h-full object-cover" />
+            <div className="absolute inset-0 flex flex-col justify-start items-end p-6 md:p-8 lg:p-12">
+              <h1 className="text-4xl md:text-5xl lg:text-7xl text-white font-bold mb-3">Joel</h1>
+              <p className="text-base md:text-lg lg:text-xl text-white mb-4 max-w-md text-right">
+                Will replace in the future
+              </p>
+              <div className="flex flex-col sm:flex-row gap-3">
+                <button className="bg-blue-500 text-white text-base md:text-lg py-2 px-6 rounded-full hover:bg-blue-600 transition">
+                  Learn More
+                </button>
+                <button className="text-white text-base md:text-lg py-2 px-6 rounded-full border border-white hover:bg-white hover:text-black transition">
+                  Summary
+                </button>
+              </div>
+            </div>
+          </div>
+
+          {/* Matthew */}
+          <div className="relative h-[50vh] md:h-[70vh] lg:h-[580px] bg-white rounded-lg overflow-hidden">
+            <img src="/images/matthew_prophecy.png" alt="Matthew" className="w-full h-full object-cover" />
+            <div className="absolute inset-0 flex flex-col justify-center p-6 md:p-8 lg:p-12">
+              <h1 className="text-4xl md:text-5xl lg:text-7xl text-white font-bold mb-3">Matthew</h1>
+              <p className="text-base md:text-lg lg:text-xl text-white mb-4 max-w-md">
+                Will replace in the future
+              </p>
+              <div className="flex flex-col sm:flex-row gap-3">
+                <button className="bg-blue-500 text-white text-base md:text-lg py-2 px-6 rounded-full hover:bg-blue-600 transition">
+                  Learn More
+                </button>
+                <button className="text-white text-base md:text-lg py-2 px-6 rounded-full border border-white hover:bg-white hover:text-black transition">
+                  Summary
+                </button>
+              </div>
+            </div>
+          </div>
+
+          {/* Genesis */}
+          <div className="relative h-[50vh] md:h-[70vh] lg:h-[580px] bg-black rounded-lg overflow-hidden">
+            <img src="/images/genesis_image.png" alt="Genesis" className="w-full h-full object-cover" />
+            <div className="absolute inset-0 flex flex-col justify-end items-end p-6 md:p-8 lg:p-12">
+              <h1 className="text-4xl md:text-5xl lg:text-7xl text-white font-bold mb-3">Genesis</h1>
+              <p className="text-base md:text-lg lg:text-xl text-white mb-4 max-w-md text-right">
+                Will replace in the future
+              </p>
+              <div className="flex flex-col sm:flex-row gap-3">
+                <button className="bg-blue-500 text-white text-base md:text-lg py-2 px-6 rounded-full hover:bg-blue-600 transition">
+                  Learn More
+                </button>
+                <button className="text-white text-base md:text-lg py-2 px-6 rounded-full border border-white hover:bg-white hover:text-black transition">
+                  Summary
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Carousel Section */}
+      <section className="bg-white" style={{ width: "1728px", height: "800px" }}>
+    <div className="overflow-visible w-[1600px] h-[700px] mx-auto relative">
+        <div
+        className="flex transition-transform duration-1000 ease-in-out gap-4"
+        style={{
+            width: `${images.length * (1230 + 24)}px`,
+            transform: `translateX(calc(-${currentIndex * (1230 + 24)}px + 230px))`,
+        }}
+        >   
       {images.map((img, index) => {
         const isActive = index === currentIndex;
         return (
@@ -308,51 +350,57 @@ export default function ProphecyCarousel() {
               </div>
             </a>
           </div>
-        );
-      })}
-    </div>
-  </div>
-
-  {/* Dot indicators */}
-  <div className="flex justify-center mt-4 gap-3">
-    {images.map((_, index) => (
-      <button
-        key={index}
-        className={`w-[8px] h-[8px] rounded-full ${
-          currentIndex === index ? "bg-black" : "bg-gray-400"
-        }`}
-        onClick={() => setCurrentIndex(index)}
-      ></button>
-    ))}
-  </div>
-</section>
-
-            <section className="bg-white" style={{ width: "2560px", height: "292px" }}>
-                <div className="w-full overflow-hidden -mt-[36px]">
-                    <div className="flex w-max animate-marquee gap-4 px-6 group-hover:animate-marquee-slow">
-                        {[...second_images, ...second_images].map((img, index) => (
-                        <div
-                            key={index}
-                            className="flex-shrink-0 w-[417px] h-[236px] overflow-hidden"
-                        >
-                            <a
-                            href={img.link || "#"}
-                            className="block w-full h-full text-black"
-                            style={{
-                                backgroundImage: `url(${img.src})`,
-                                backgroundSize: "cover",
-                                backgroundPosition: "center",
-                            }}
-                           />
-                            {/* Text Overlay */}
-                        
-                        </div>
-                        ))}
-                    </div>
+                );
+                })}
                 </div>
-            </section>
-                
-        </div>
-    );
-}
+            </div>
 
+            {/* Dot indicators */}
+            <div className="flex justify-center mt-4 gap-3">
+                {images.map((_, index) => (
+                <button
+                    key={index}
+                    className={`w-[8px] h-[8px] rounded-full ${
+                    currentIndex === index ? "bg-black" : "bg-gray-400"
+                    }`}
+                    onClick={() => setCurrentIndex(index)}
+                ></button>
+                ))}
+            </div>
+            </section>
+
+      {/* Marquee Section */}
+      <section className="w-full bg-white py-8 overflow-hidden">
+        <style jsx>{`
+          @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+          }
+          .animate-marquee {
+            animation: marquee 30s linear infinite;
+          }
+        `}</style>
+        <div className="relative">
+          <div className="flex animate-marquee">
+            {[...second_images, ...second_images].map((img, index) => (
+              <div
+                key={index}
+                className="flex-shrink-0 w-[250px] md:w-[350px] lg:w-[417px] h-[150px] md:h-[200px] lg:h-[236px] mx-2"
+              >
+                <a
+                  href={img.link || "#"}
+                  className="block w-full h-full rounded-lg overflow-hidden"
+                  style={{
+                    backgroundImage: `url(${img.src})`,
+                    backgroundSize: "cover",
+                    backgroundPosition: "center",
+                  }}
+                />
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+    </div>
+  );
+}
